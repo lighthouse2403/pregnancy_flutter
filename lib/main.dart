@@ -3,6 +3,8 @@ import 'package:pregnancy_flutter/home/home.dart';
 import 'app_module.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await AppModule.init();
   runApp(const MyApp());
 }

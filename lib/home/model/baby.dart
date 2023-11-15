@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-
 part 'baby.g.dart';
 
 @HiveType(typeId: 1, adapterName: 'BabyAdapter')

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
+import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/home/components/heart_indicator.dart';
 
@@ -40,7 +41,7 @@ class _HomeState extends BaseStatefulState<Home> {
                 (context, index) {
               return _homeItem(index);
             },
-            childCount: 10,
+            childCount: Constants.homeItems.length,
           ),
         ),
         SliverPadding(
@@ -54,13 +55,29 @@ class _HomeState extends BaseStatefulState<Home> {
     return InkWell(
       child: Column(
         children: [
-          Text('Item')
+          Text(Constants.homeItems[index].title)
         ],
       ),
     );
   }
 
-  Widget _babyInformationRow() {
+  Widget _babyInformationRow(int index) {
+    String title;
+    String content;
+    switch (index){
+      case 0:
+        title = 'Mẹ bầu:';
+        break;
+      case 1:
+        title = 'Mẹ bầu:';
+        break;
+      case 2:
+        title = 'Mẹ bầu:';
+        break;
+      default:
+        break;
+    }
+
     return Row(
       children: [
         Text('Tuổi thai:').w500().text14().greyColor(),
