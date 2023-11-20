@@ -18,6 +18,11 @@ extension TextExtension on Text? {
   Text whiteColor() {
     return Text(this?.data ?? '', style: this?.style?.greyColor(), textAlign: this?.textAlign);
   }
+
+  Text blackColor() {
+    return Text(this?.data ?? '', style: this?.style?.blackColor(), textAlign: this?.textAlign);
+  }
+
   /// Setup font weight for text
   Text w400() {
     return Text(this?.data ?? '', style: this?.style?.textW400(), textAlign: this?.textAlign);

@@ -28,7 +28,20 @@ class _HomeState extends BaseStatefulState<Home> {
         SliverToBoxAdapter(
           child: Container(
             height: 260.0,
-            child: HeartIndicator(),
+            child: Row(
+              children: [
+                HeartIndicator(),
+                Column(
+                  children: [
+                    _babyInformationRow(0),
+                    _babyInformationRow(1),
+                    _babyInformationRow(2),
+                    _babyInformationRow(3),
+                    _babyInformationRow(4),
+                  ],
+                )
+              ],
+            )
           ),
         ),
         SliverGrid(
@@ -44,35 +57,57 @@ class _HomeState extends BaseStatefulState<Home> {
             childCount: Constants.homeItems.length,
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 80.0),
-        )
       ],
     );
   }
 
   Widget _homeItem(int index) {
     return InkWell(
-      child: Column(
-        children: [
-          Text(Constants.homeItems[index].title)
-        ],
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 7,
+              offset: const Offset(2, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Constants.homeItems[index].icon,
+            Text(Constants.homeItems[index].title).w400().text14().blackColor()
+          ],
+        ),
       ),
     );
   }
 
   Widget _babyInformationRow(int index) {
-    String title;
-    String content;
+    String title = '';
+    String content = '';
     switch (index){
       case 0:
         title = 'Mẹ bầu:';
         break;
       case 1:
-        title = 'Mẹ bầu:';
+        title = 'Bé yêu:';
         break;
       case 2:
-        title = 'Mẹ bầu:';
+        title = 'Ngày sự dinh:';
+        break;
+      case 3:
+        title = 'Tuổi thai:';
+        break;
+      case 4:
+        title = 'Kỳ kinh cuối:';
+        break;
+      case 5:
+        title = 'Ngày còn lại:';
         break;
       default:
         break;
@@ -80,8 +115,8 @@ class _HomeState extends BaseStatefulState<Home> {
 
     return Row(
       children: [
-        Text('Tuổi thai:').w500().text14().greyColor(),
-        Text('30 tuần 2 ngày').w500().text14().greyColor(),
+        Text(title).w500().text14().greyColor(),
+        Text(content).w500().text14().greyColor(),
       ],
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
-class HomeItem {
+class BottomTabBarItem {
   Widget icon = Container();
   String title = '';
 
-  HomeItem(this.icon, this.title);
+  BottomTabBarItem(this.icon, this.title);
 }
