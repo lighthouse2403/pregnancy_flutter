@@ -1,12 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pregnancy_flutter/common/constants/constants.dart';
 
 extension FontWeightExtension on TextStyle? {
+  TextStyle mainTextColor() {
+    return TextStyle(
+        fontWeight: this?.fontWeight,
+        fontSize: this?.fontSize,
+        color:  Constants.mainTextColor(),
+        overflow: this?.overflow
+    );
+  }
+
   TextStyle mainColor() {
     return TextStyle(
         fontWeight: this?.fontWeight,
         fontSize: this?.fontSize,
-        color:  Colors.green,
+        color:  Constants.mainColor(),
+        overflow: this?.overflow
+    );
+  }
+
+  TextStyle primaryTextColor() {
+    return TextStyle(
+        fontWeight: this?.fontWeight,
+        fontSize: this?.fontSize,
+        color:  Constants.primaryTextColor(),
         overflow: this?.overflow
     );
   }

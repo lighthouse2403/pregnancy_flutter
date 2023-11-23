@@ -77,6 +77,7 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
     return Column(
       children: [
         icon,
+        const SizedBox(height: 2),
         Text(
           Constants.bottomTabBarItems[index].title,
           style: _generateTextStyle(index),

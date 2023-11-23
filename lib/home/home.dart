@@ -26,6 +26,7 @@ class _HomeState extends BaseStatefulState<Home> {
   @override
   PreferredSizeWidget? buildAppBar() {
     return AppBar(
+      backgroundColor: Constants.mainColor(),
       title: Text('Soc-Tho').w700().text18().whiteColor(),
     );
   }
@@ -41,12 +42,17 @@ class _HomeState extends BaseStatefulState<Home> {
   @override
   Widget? buildBody() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: Container(
                 height: 220.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/cute_little_baby.jpeg'),
+                      fit: BoxFit.fill),
+                ),
                 child: Row(
                   children: [
                     HeartIndicator(),
@@ -111,7 +117,7 @@ class _HomeState extends BaseStatefulState<Home> {
             children: [
               Constants.homeItems[index].icon,
               const SizedBox(height: 10),
-              Text(Constants.homeItems[index].title).w400().text14().blackColor().center()
+              Text(Constants.homeItems[index].title).w400().text14().primaryTextColor().center()
             ],
           ),
         ),

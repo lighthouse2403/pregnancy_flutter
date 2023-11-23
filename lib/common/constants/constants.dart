@@ -6,18 +6,18 @@ import 'package:pregnancy_flutter/common/constants/models/homeItem.dart';
 
 class Constants {
   static List<HomeItem> homeItems = [
-    HomeItem(Assets.icons.chat.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Góc chia sẻ'),
-    HomeItem(Assets.icons.babyKick.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Số lần đạp'),
-    HomeItem(Assets.icons.weight.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Cân nặng'),
-    HomeItem(Assets.icons.knowledge.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Kiến thức'),
-    HomeItem(Assets.icons.music.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Âm nhạc'),
-    HomeItem(Assets.icons.doctors.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Danh sách bác sỹ'),
-    HomeItem(Assets.icons.babyClothes.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Đồ sơ sinh'),
-    HomeItem(Assets.icons.babyName.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Tên hay'),
-    HomeItem(Assets.icons.injection.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Địa chỉ phòng tiêm'),
-    HomeItem(Assets.icons.alarm.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Nhắc nhở'),
-    HomeItem(Assets.icons.diary.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Ứng dụng chu kỳ kinh'),
-    HomeItem(Assets.icons.group.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn)), 'Nhóm thảo luận'),
+    HomeItem(Assets.icons.chat.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Góc chia sẻ'),
+    HomeItem(Assets.icons.babyKick.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Số lần đạp'),
+    HomeItem(Assets.icons.weight.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Cân nặng'),
+    HomeItem(Assets.icons.knowledge.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Kiến thức'),
+    HomeItem(Assets.icons.music.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Âm nhạc'),
+    HomeItem(Assets.icons.clinic.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Danh sách bác sỹ'),
+    HomeItem(Assets.icons.babyClothes.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Đồ sơ sinh'),
+    HomeItem(Assets.icons.babyName.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Tên hay'),
+    HomeItem(Assets.icons.injection.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Địa chỉ phòng tiêm'),
+    HomeItem(Assets.icons.alarm.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Nhắc nhở'),
+    HomeItem(Assets.icons.diary.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Ứng dụng chu kỳ kinh'),
+    HomeItem(Assets.icons.group.svg(width: 30, height: 30, colorFilter: ColorFilter.mode(Constants.mainColor(), BlendMode.srcIn)), 'Nhóm thảo luận'),
   ];
 
   static List<BottomTabBarItem> bottomTabBarItems = [
@@ -27,4 +27,16 @@ class Constants {
     BottomTabBarItem(Assets.icons.weight, 'Chỉ số'),
     BottomTabBarItem(Assets.icons.calendar, 'Lịch'),
   ];
+
+  static Color mainColor() {
+    return const Color(0xFF47AC66);
+  }
+
+  static Color mainTextColor() {
+    return const Color(0xFFFF66A3);
+  }
+
+  static Color primaryTextColor() {
+    return const Color(0xFF0B0B1E);
+  }
 }

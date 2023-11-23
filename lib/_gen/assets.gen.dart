@@ -11,6 +11,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsDataGen {
+  const $AssetsDataGen();
+
+  $AssetsDataJsonGen get json => const $AssetsDataJsonGen();
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -36,11 +42,11 @@ class $AssetsIconsGen {
   /// File path: assets/icons/chat.svg
   SvgGenImage get chat => const SvgGenImage('assets/icons/chat.svg');
 
+  /// File path: assets/icons/clinic.svg
+  SvgGenImage get clinic => const SvgGenImage('assets/icons/clinic.svg');
+
   /// File path: assets/icons/diary.svg
   SvgGenImage get diary => const SvgGenImage('assets/icons/diary.svg');
-
-  /// File path: assets/icons/doctors.svg
-  SvgGenImage get doctors => const SvgGenImage('assets/icons/doctors.svg');
 
   /// File path: assets/icons/group.svg
   SvgGenImage get group => const SvgGenImage('assets/icons/group.svg');
@@ -72,8 +78,8 @@ class $AssetsIconsGen {
         babyName,
         calendar,
         chat,
+        clinic,
         diary,
-        doctors,
         group,
         home,
         injection,
@@ -84,10 +90,113 @@ class $AssetsIconsGen {
       ];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/home_background.png
+  AssetGenImage get homeBackground =>
+      const AssetGenImage('assets/images/home_background.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [homeBackground];
+}
+
+class $AssetsDataJsonGen {
+  const $AssetsDataJsonGen();
+
+  /// File path: assets/data/json/after_knowledge.json
+  String get afterKnowledge => 'assets/data/json/after_knowledge.json';
+
+  /// File path: assets/data/json/baby_index_detail.json
+  String get babyIndexDetail => 'assets/data/json/baby_index_detail.json';
+
+  /// File path: assets/data/json/baby_name.json
+  String get babyName => 'assets/data/json/baby_name.json';
+
+  /// File path: assets/data/json/before_pregnancy_knowledge.json
+  String get beforePregnancyKnowledge =>
+      'assets/data/json/before_pregnancy_knowledge.json';
+
+  /// File path: assets/data/json/doctor.json
+  String get doctor => 'assets/data/json/doctor.json';
+
+  /// File path: assets/data/json/food.json
+  String get food => 'assets/data/json/food.json';
+
+  /// File path: assets/data/json/fruit.json
+  String get fruit => 'assets/data/json/fruit.json';
+
+  /// File path: assets/data/json/hospital_list.json
+  String get hospitalList => 'assets/data/json/hospital_list.json';
+
+  /// File path: assets/data/json/know_ledge.json
+  String get knowLedge => 'assets/data/json/know_ledge.json';
+
+  /// File path: assets/data/json/labor_and_birth.json
+  String get laborAndBirth => 'assets/data/json/labor_and_birth.json';
+
+  /// File path: assets/data/json/new_born_list.json
+  String get newBornList => 'assets/data/json/new_born_list.json';
+
+  /// File path: assets/data/json/nutrition.json
+  String get nutrition => 'assets/data/json/nutrition.json';
+
+  /// File path: assets/data/json/pregnancy_knowledge.json
+  String get pregnancyKnowledge => 'assets/data/json/pregnancy_knowledge.json';
+
+  /// File path: assets/data/json/pregnancy_process.json
+  String get pregnancyProcess => 'assets/data/json/pregnancy_process.json';
+
+  /// File path: assets/data/json/pregnancy_process_backup.json
+  String get pregnancyProcessBackup =>
+      'assets/data/json/pregnancy_process_backup.json';
+
+  /// File path: assets/data/json/review_hospital.json
+  String get reviewHospital => 'assets/data/json/review_hospital.json';
+
+  /// File path: assets/data/json/stories.json
+  String get stories => 'assets/data/json/stories.json';
+
+  /// File path: assets/data/json/vaccination.json
+  String get vaccination => 'assets/data/json/vaccination.json';
+
+  /// File path: assets/data/json/vitamin.json
+  String get vitamin => 'assets/data/json/vitamin.json';
+
+  /// File path: assets/data/json/week_notification.json
+  String get weekNotification => 'assets/data/json/week_notification.json';
+
+  /// List of all assets
+  List<String> get values => [
+        afterKnowledge,
+        babyIndexDetail,
+        babyName,
+        beforePregnancyKnowledge,
+        doctor,
+        food,
+        fruit,
+        hospitalList,
+        knowLedge,
+        laborAndBirth,
+        newBornList,
+        nutrition,
+        pregnancyKnowledge,
+        pregnancyProcess,
+        pregnancyProcessBackup,
+        reviewHospital,
+        stories,
+        vaccination,
+        vitamin,
+        weekNotification
+      ];
+}
+
 class Assets {
   Assets._();
 
+  static const $AssetsDataGen data = $AssetsDataGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

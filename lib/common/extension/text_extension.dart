@@ -11,6 +11,14 @@ extension TextExtension on Text? {
     return Text(this?.data ?? '', style: this?.style?.customColor(color), textAlign: this?.textAlign);
   }
 
+  Text primaryTextColor() {
+    return Text(this?.data ?? '', style: this?.style?.primaryTextColor(), textAlign: this?.textAlign);
+  }
+
+  Text mainColor() {
+    return Text(this?.data ?? '', style: this?.style?.mainTextColor(), textAlign: this?.textAlign);
+  }
+
   Text greyColor() {
     return Text(this?.data ?? '', style: this?.style?.greyColor(), textAlign: this?.textAlign);
   }
