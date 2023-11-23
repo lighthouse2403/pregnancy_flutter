@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pregnancy_flutter/_gen/assets.gen.dart';
 
 class BottomTabBarItem {
-  Widget icon = Container();
+  SvgGenImage icon;
   String title = '';
 
   BottomTabBarItem(this.icon, this.title);

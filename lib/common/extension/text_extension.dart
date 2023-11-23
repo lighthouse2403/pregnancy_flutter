@@ -16,7 +16,7 @@ extension TextExtension on Text? {
   }
 
   Text whiteColor() {
-    return Text(this?.data ?? '', style: this?.style?.greyColor(), textAlign: this?.textAlign);
+    return Text(this?.data ?? '', style: this?.style?.whiteColor(), textAlign: this?.textAlign);
   }
 
   Text blackColor() {

@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pregnancy_flutter/data/cache.dart';
 import 'package:pregnancy_flutter/home/model/baby.dart';
+import 'package:pregnancy_flutter/local/cache.dart';
 
 GetIt getIt = GetIt.instance;
 

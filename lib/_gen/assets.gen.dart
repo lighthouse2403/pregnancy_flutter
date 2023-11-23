@@ -14,23 +14,74 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/alarm.svg
+  SvgGenImage get alarm => const SvgGenImage('assets/icons/alarm.svg');
+
   /// File path: assets/icons/baby.svg
   SvgGenImage get baby => const SvgGenImage('assets/icons/baby.svg');
+
+  /// File path: assets/icons/baby_clothes.svg
+  SvgGenImage get babyClothes =>
+      const SvgGenImage('assets/icons/baby_clothes.svg');
+
+  /// File path: assets/icons/baby_kick.svg
+  SvgGenImage get babyKick => const SvgGenImage('assets/icons/baby_kick.svg');
+
+  /// File path: assets/icons/baby_name.svg
+  SvgGenImage get babyName => const SvgGenImage('assets/icons/baby_name.svg');
 
   /// File path: assets/icons/calendar.svg
   SvgGenImage get calendar => const SvgGenImage('assets/icons/calendar.svg');
 
+  /// File path: assets/icons/chat.svg
+  SvgGenImage get chat => const SvgGenImage('assets/icons/chat.svg');
+
   /// File path: assets/icons/diary.svg
   SvgGenImage get diary => const SvgGenImage('assets/icons/diary.svg');
 
+  /// File path: assets/icons/doctors.svg
+  SvgGenImage get doctors => const SvgGenImage('assets/icons/doctors.svg');
+
+  /// File path: assets/icons/group.svg
+  SvgGenImage get group => const SvgGenImage('assets/icons/group.svg');
+
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
+
+  /// File path: assets/icons/injection.svg
+  SvgGenImage get injection => const SvgGenImage('assets/icons/injection.svg');
+
+  /// File path: assets/icons/knowledge.svg
+  SvgGenImage get knowledge => const SvgGenImage('assets/icons/knowledge.svg');
+
+  /// File path: assets/icons/music.svg
+  SvgGenImage get music => const SvgGenImage('assets/icons/music.svg');
+
+  /// File path: assets/icons/pregnancy.svg
+  SvgGenImage get pregnancy => const SvgGenImage('assets/icons/pregnancy.svg');
 
   /// File path: assets/icons/weight.svg
   SvgGenImage get weight => const SvgGenImage('assets/icons/weight.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [baby, calendar, diary, home, weight];
+  List<SvgGenImage> get values => [
+        alarm,
+        baby,
+        babyClothes,
+        babyKick,
+        babyName,
+        calendar,
+        chat,
+        diary,
+        doctors,
+        group,
+        home,
+        injection,
+        knowledge,
+        music,
+        pregnancy,
+        weight
+      ];
 }
 
 class Assets {

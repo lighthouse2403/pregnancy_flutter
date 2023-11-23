@@ -70,9 +70,13 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
 
   /// Generate icon for each item
   Widget _generateIcon(int index) {
+    Widget icon = Constants.bottomTabBarItems[index].icon.svg(
+        width: 18,
+        height: 18,
+        colorFilter: ColorFilter.mode(_generateItemColor(index), BlendMode.srcIn));
     return Column(
       children: [
-        Constants.bottomTabBarItems[index].icon,
+        icon,
         Text(
           Constants.bottomTabBarItems[index].title,
           style: _generateTextStyle(index),
