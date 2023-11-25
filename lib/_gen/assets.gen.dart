@@ -93,12 +93,34 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/cute_little_baby.jpeg
+  AssetGenImage get cuteLittleBaby =>
+      const AssetGenImage('assets/images/cute_little_baby.jpeg');
+
   /// File path: assets/images/home_background.png
   AssetGenImage get homeBackground =>
       const AssetGenImage('assets/images/home_background.png');
 
+  /// File path: assets/images/pregnancy_backgroound_1.jpg
+  AssetGenImage get pregnancyBackgroound1 =>
+      const AssetGenImage('assets/images/pregnancy_backgroound_1.jpg');
+
+  /// File path: assets/images/pregnancy_backgroound_2.jpg
+  AssetGenImage get pregnancyBackgroound2 =>
+      const AssetGenImage('assets/images/pregnancy_backgroound_2.jpg');
+
+  /// File path: assets/images/pregnancy_backgroound_3.jpg
+  AssetGenImage get pregnancyBackgroound3 =>
+      const AssetGenImage('assets/images/pregnancy_backgroound_3.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [homeBackground];
+  List<AssetGenImage> get values => [
+        cuteLittleBaby,
+        homeBackground,
+        pregnancyBackgroound1,
+        pregnancyBackgroound2,
+        pregnancyBackgroound3
+      ];
 }
 
 class $AssetsDataJsonGen {

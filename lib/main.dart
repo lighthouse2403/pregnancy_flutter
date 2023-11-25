@@ -31,7 +31,7 @@ class PregnancyApp extends StatelessWidget {
   }
 
   String _generateFirstScreen() {
-    Baby? baby = getIt<CacheData>().getBaby;
-    return baby != null ? RoutesName.babyInformation : RoutesName.tabBarRoute;
+    String? babyName = getIt<CacheData>().getBabyName;
+    return babyName != null ? RoutesName.babyInformation : RoutesName.tabBarRoute;
   }
 }

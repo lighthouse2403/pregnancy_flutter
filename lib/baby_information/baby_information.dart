@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pregnancy_flutter/common/Widgets/customTextField.dart';
+import 'package:pregnancy_flutter/common/Widgets/custom_button.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
-import 'package:pregnancy_flutter/home/components/heart_indicator.dart';
+import 'package:pregnancy_flutter/home/model/baby.dart';
+import 'package:pregnancy_flutter/routes/routes.dart';
 
 class BabyInformation extends BaseStatefulWidget {
   const BabyInformation({super.key});
@@ -17,71 +20,75 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
   @override
   PreferredSizeWidget? buildAppBar() {
     return AppBar(
+      backgroundColor: Constants.mainColor(),
       title: Text('Soc-Tho').w700().text18().whiteColor(),
     );
   }
 
   @override
   Widget? buildBody() {
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverToBoxAdapter(
-          child: Container(
-            height: 260.0,
-            child: HeartIndicator(),
-          ),
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _babyInformationRow(0),
+            Constants.vSpacer10,
+            _babyInformationRow(1),
+            Constants.vSpacer10,
+            _babyInformationRow(2),
+            Constants.vSpacer10,
+            _babyInformationRow(3),
+            Constants.vSpacer10,
+            _babyInformationRow(4),
+            Constants.vSpacer10,
+            _babyInformationRow(5),
+          ],
         ),
-        SliverGrid(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 1.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0),
-          delegate: SliverChildBuilderDelegate(
-                (context, index) {
-              return _homeItem(index);
-            },
-            childCount: Constants.homeItems.length,
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 80.0),
-        )
-      ],
-    );
-  }
-
-  Widget _homeItem(int index) {
-    return InkWell(
-      child: Column(
-        children: [
-          Text(Constants.homeItems[index].title)
-        ],
       ),
     );
   }
 
+  Baby _generateBabyInformation() {
+    return Baby();
+  }
+
   Widget _babyInformationRow(int index) {
-    String title;
-    String content;
+    String title = '';
+    String content = '-';
     switch (index){
       case 0:
         title = 'Mẹ bầu:';
         break;
       case 1:
-        title = 'Mẹ bầu:';
+        title = 'Bé yêu:';
         break;
       case 2:
-        title = 'Mẹ bầu:';
+        title = 'Dự sinh:';
+        break;
+      case 3:
+        title = 'Tuổi thai:';
+        break;
+      case 4:
+        title = 'Ngày còn lại:';
+        break;
+      case 5:
+        title = 'Kỳ kinh cuối:';
         break;
       default:
         break;
     }
 
-    return Row(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Tuổi thai:').w500().text14().greyColor(),
-        Text('30 tuần 2 ngày').w500().text14().greyColor(),
+        Text(title).w400().text15().primaryTextColor().left(),
+        Constants.vSpacer10,
+        CustomTextField(
+          enable: true,
+        )
       ],
     );
   }

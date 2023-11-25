@@ -58,14 +58,14 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
 
   /// Generate item colors
   Color _generateItemColor(int index) {
-    Color itemColor = selectedIndex == index ? Colors.green : Colors.grey;
+    Color itemColor = selectedIndex == index ? Constants.mainColor() : Constants.secondaryTextColor();
     return itemColor;
   }
 
   /// Generate item text style
   TextStyle _generateTextStyle(int index) {
     Color labelColor = _generateItemColor(index);
-    return TextStyle(color: labelColor).textW600().text12();
+    return TextStyle(color: labelColor).textW500().text12();
   }
 
   /// Generate icon for each item
@@ -77,7 +77,7 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
     return Column(
       children: [
         icon,
-        const SizedBox(height: 2),
+        const SizedBox(height: 4),
         Text(
           Constants.bottomTabBarItems[index].title,
           style: _generateTextStyle(index),

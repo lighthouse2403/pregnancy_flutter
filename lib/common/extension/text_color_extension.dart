@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
 
 extension FontWeightExtension on TextStyle? {
-  TextStyle mainTextColor() {
+  TextStyle pinkTextColor() {
     return TextStyle(
         fontWeight: this?.fontWeight,
         fontSize: this?.fontSize,
-        color:  Constants.mainTextColor(),
+        color:  Constants.pinkTextColor(),
         overflow: this?.overflow
     );
   }

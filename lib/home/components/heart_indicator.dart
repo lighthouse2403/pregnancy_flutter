@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/home/components/src/liquid_custom_progress_indicator.dart';
 
@@ -16,10 +17,10 @@ class _HeartIndicatorState extends State<HeartIndicator> with SingleTickerProvid
       child: LiquidCustomProgressIndicator(
         value: 0.4,
         direction: Axis.vertical,
-        backgroundColor: Colors.white,
-        valueColor: AlwaysStoppedAnimation(Colors.green),
+        backgroundColor: Constants.secondaryTextColor().withOpacity(0.5),
+        valueColor: AlwaysStoppedAnimation(Constants.pinkTextColor()),
         shapePath: _buildHeartPath(),
-        center: Text("40%").w700().whiteColor().text20(),
+        center: Text("40%").w600().primaryTextColor().text20(),
       ),
     );
   }

@@ -15,8 +15,8 @@ extension TextExtension on Text? {
     return Text(this?.data ?? '', style: this?.style?.primaryTextColor(), textAlign: this?.textAlign);
   }
 
-  Text mainColor() {
-    return Text(this?.data ?? '', style: this?.style?.mainTextColor(), textAlign: this?.textAlign);
+  Text pinkColor() {
+    return Text(this?.data ?? '', style: this?.style?.pinkTextColor(), textAlign: this?.textAlign);
   }
 
   Text greyColor() {
