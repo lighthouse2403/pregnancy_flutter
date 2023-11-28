@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:pregnancy_flutter/_gen/assets.gen.dart';
 
 class BottomTabBarItem {

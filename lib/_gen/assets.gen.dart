@@ -23,6 +23,16 @@ class $AssetsIconsGen {
   /// File path: assets/icons/alarm.svg
   SvgGenImage get alarm => const SvgGenImage('assets/icons/alarm.svg');
 
+  /// File path: assets/icons/arrow_back.svg
+  SvgGenImage get arrowBack => const SvgGenImage('assets/icons/arrow_back.svg');
+
+  /// File path: assets/icons/arrow_down.svg
+  SvgGenImage get arrowDown => const SvgGenImage('assets/icons/arrow_down.svg');
+
+  /// File path: assets/icons/arrow_forward.svg
+  SvgGenImage get arrowForward =>
+      const SvgGenImage('assets/icons/arrow_forward.svg');
+
   /// File path: assets/icons/baby.svg
   SvgGenImage get baby => const SvgGenImage('assets/icons/baby.svg');
 
@@ -72,6 +82,9 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         alarm,
+        arrowBack,
+        arrowDown,
+        arrowForward,
         baby,
         babyClothes,
         babyKick,
