@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:pregnancy_flutter/_gen/assets.gen.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/date_time_extension.dart';
+import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/common/widgets/date_picker/calendar_date_picker2.dart';
 
 const Size _calendarPortraitDialogSize = Size(330.0, 398.0);
@@ -445,8 +446,8 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
 
     final String dateText = localizations.formatMediumDate(_selectedDate.value);
     final Color onPrimarySurface = colorScheme.brightness == Brightness.light
-        ? colorScheme.onPrimary
-        : colorScheme.onSurface;
+        ? Constants.mainColor()
+        : Constants.mainColor();
     final TextStyle? dateStyle = orientation == Orientation.landscape
         ? textTheme.headlineSmall?.copyWith(color: onPrimarySurface)
         : textTheme.headlineMedium?.copyWith(color: onPrimarySurface);
@@ -464,11 +465,11 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
                 theme.useMaterial3
                     ? localizations.cancelButtonLabel
                     : localizations.cancelButtonLabel.toUpperCase()
-            )),
+            )).w400().text14().mainColor(),
           ),
           TextButton(
             onPressed: _handleOk,
-            child: Text(widget.confirmText ?? localizations.okButtonLabel),
+            child: Text(widget.confirmText ?? localizations.okButtonLabel).w600().text16().mainColor(),
           ),
         ],
       ),
@@ -736,8 +737,8 @@ class _DatePickerHeader extends StatelessWidget {
 
     // The header should use the primary color in light themes and surface color in dark
     final bool isDark = colorScheme.brightness == Brightness.dark;
-    final Color primarySurfaceColor = isDark ? colorScheme.surface : colorScheme.primary;
-    final Color onPrimarySurfaceColor = isDark ? colorScheme.onSurface : colorScheme.onPrimary;
+    final Color primarySurfaceColor = isDark ? Constants.mainColor() : Constants.mainColor();
+    final Color onPrimarySurfaceColor = isDark ? Constants.mainColor() : Constants.mainColor();
 
     final TextStyle? helpStyle = textTheme.labelSmall?.copyWith(
       color: onPrimarySurfaceColor,
@@ -1297,8 +1298,8 @@ class _DateRangePickerDialogState extends State<DateRangePickerDialog> with Rest
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     final ColorScheme colors = Theme.of(context).colorScheme;
     final Color onPrimarySurface = colors.brightness == Brightness.light
-        ? colors.onPrimary
-        : colors.onSurface;
+        ? Constants.mainColor()
+        : Constants.mainColor();
 
     final Widget contents;
     final Size size;
@@ -2206,7 +2207,7 @@ class _MonthItemState extends State<_MonthItem> {
   }
 
   Color _highlightColor(BuildContext context) {
-    return Theme.of(context).colorScheme.primary.withOpacity(0.12);
+    return Constants.mainColor();//Theme.of(context).colorScheme.primary.withOpacity(0.12);
   }
 
   void _dayFocusChanged(bool focused) {
@@ -2260,7 +2261,7 @@ class _MonthItemState extends State<_MonthItem> {
       // highlight, and a contrasting text color.
       itemStyle = textTheme.bodyMedium?.apply(color: colorScheme.onPrimary);
       decoration = BoxDecoration(
-        color: colorScheme.primary,
+        color: Constants.mainColor(),
         shape: BoxShape.circle,
       );
 
@@ -2288,7 +2289,7 @@ class _MonthItemState extends State<_MonthItem> {
       // border.
       itemStyle = textTheme.bodyMedium?.apply(color: colorScheme.primary);
       decoration = BoxDecoration(
-        border: Border.all(color: colorScheme.primary),
+        border: Border.all(color: Constants.mainColor()),
         shape: BoxShape.circle,
       );
     }
@@ -2577,8 +2578,8 @@ class _InputDateRangePickerDialog extends StatelessWidget {
     final TextTheme textTheme = theme.textTheme;
 
     final Color onPrimarySurfaceColor = colorScheme.brightness == Brightness.light
-        ? colorScheme.onPrimary
-        : colorScheme.onSurface;
+        ? Constants.mainColor()
+        : Constants.mainColor();
     final TextStyle? dateStyle = orientation == Orientation.landscape
         ? textTheme.headlineSmall?.apply(color: onPrimarySurfaceColor)
         : textTheme.headlineMedium?.apply(color: onPrimarySurfaceColor);
@@ -2610,15 +2611,17 @@ class _InputDateRangePickerDialog extends StatelessWidget {
         children: <Widget>[
           TextButton(
             onPressed: onCancel,
-            child: Text(cancelText ?? (
-                theme.useMaterial3
+            child: Text(
+                cancelText ?? (
+                    theme.useMaterial3
                     ? localizations.cancelButtonLabel
                     : localizations.cancelButtonLabel.toUpperCase()
-            )),
+                )
+            ).w400().text14().primaryTextColor().mainColor(),
           ),
           TextButton(
             onPressed: onConfirm,
-            child: Text(confirmText ?? localizations.okButtonLabel),
+            child: Text(confirmText ?? localizations.okButtonLabel).w600().text16().primaryTextColor().mainColor(),
           ),
         ],
       ),

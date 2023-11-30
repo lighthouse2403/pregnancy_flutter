@@ -4,12 +4,14 @@ import 'package:pregnancy_flutter/common/base/base_child_stateful_widget.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 
 class CustomButton extends BaseChildStatefulWidget {
-  CustomButton({super.key, this.backgroundColor, required this.onTappedAction, required this.title, this.titleColor});
+  CustomButton({super.key, this.backgroundColor, required this.onTappedAction, required this.title, this.titleColor, this.titleAlignment, this.horizontalPadding, this.borderColor});
 
+  double? horizontalPadding;
   String title;
   Color? backgroundColor;
+  Color? borderColor;
   Color? titleColor;
-
+  AlignmentGeometry? titleAlignment;
   VoidCallback onTappedAction;
 
   @override
@@ -23,16 +25,17 @@ class _DiaryState extends BaseChildStatefulState<CustomButton> {
     return InkWell(
       onTap: widget.onTappedAction,
       child: Container(
-        alignment: Alignment.center,
-        height: 50,
-        width: 200,
+        padding: EdgeInsets.symmetric(horizontal: widget.horizontalPadding ?? 20),
+        alignment: widget.titleAlignment ?? Alignment.center,
+        height: 46,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(25)),
-            color: widget.backgroundColor
+            color: widget.backgroundColor,
+            border: Border.all(width: 1, color: widget.borderColor ?? Colors.transparent)
         ),
         child: Text(
           widget.title,
-        ).w600().text16().customColor(widget.titleColor),
+        ).w600().text16().customColor(widget.titleColor).left(),
       ),
     );
   }

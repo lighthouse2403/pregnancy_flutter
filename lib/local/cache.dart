@@ -21,10 +21,6 @@ abstract class CacheData {
   /// Birth date
   DateTime? get getBirthDate;
   Future<void> saveBirthDate(DateTime time);
-
-  /// Last period
-  DateTime? get getLastPeriod;
-  Future<void> saveLastPeriod(DateTime time);
 }
 
 class CacheDataImplement extends CacheData {
@@ -57,13 +53,4 @@ class CacheDataImplement extends CacheData {
 
   @override
   DateTime? get getBirthDate => _boxSettings.get(CacheKey.birthDate);
-
-  /// Birth date
-  @override
-  Future<void> saveLastPeriod(DateTime time) async {
-    await _boxSettings.put(CacheKey.lastPeriod, time);
-  }
-
-  @override
-  DateTime? get getLastPeriod => _boxSettings.get(CacheKey.lastPeriod);
 }

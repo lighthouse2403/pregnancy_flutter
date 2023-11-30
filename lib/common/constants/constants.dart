@@ -92,6 +92,14 @@ class Constants {
   static Widget vSpacer16 = const SizedBox(height: 16);
   static Widget vSpacer20 = const SizedBox(height: 20);
 
+  static Widget hSpacer2 = const SizedBox(width: 2);
+  static Widget hSpacer4 = const SizedBox(width: 4);
+  static Widget hSpacer6 = const SizedBox(width: 6);
+  static Widget hSpacer8 = const SizedBox(width: 8);
+  static Widget hSpacer10 = const SizedBox(width: 10);
+  static Widget hSpacer12 = const SizedBox(width: 12);
+  static Widget hSpacer16 = const SizedBox(width: 16);
+  static Widget hSpacer20 = const SizedBox(width: 20);
   ///Border
 
   static const double marginEdge = 16;

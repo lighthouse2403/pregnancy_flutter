@@ -31,6 +31,9 @@ extension TextExtension on Text? {
     return Text(this?.data ?? '', style: this?.style?.blackColor(), textAlign: this?.textAlign);
   }
 
+  Text mainColor() {
+    return Text(this?.data ?? '', style: this?.style?.mainColor(), textAlign: this?.textAlign);
+  }
   /// Setup font weight for text
   Text w400() {
     return Text(this?.data ?? '', style: this?.style?.textW400(), textAlign: this?.textAlign);

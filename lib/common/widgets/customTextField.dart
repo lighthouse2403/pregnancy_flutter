@@ -46,7 +46,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       borderRadius: const BorderRadius.all(Radius.circular(Constants.radius)),
       borderSide: BorderSide(
         width: Constants.borderWidth,
-        color: Constants.secondaryTextColor(),
+        color: Constants.secondaryTextColor().withOpacity(0.4),
       ),
     );
 
@@ -75,7 +75,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             disabledBorder: defaultBorder,
             focusedErrorBorder: errorBorder,
             fillColor:
-            widget.enable ? Colors.transparent : Constants.secondaryTextColor(),
+            widget.enable ? Constants.secondaryTextColor().withOpacity(0.4) : Constants.secondaryTextColor(),
             filled: true,
             hintStyle: TextStyle(
               fontSize: 14,

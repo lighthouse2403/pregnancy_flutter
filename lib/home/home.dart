@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pregnancy_flutter/app_module.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
+import 'package:pregnancy_flutter/common/extension/date_time_extension.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/home/components/heart_indicator.dart';
+import 'package:pregnancy_flutter/local/cache.dart';
 import 'package:pregnancy_flutter/routes/route_name.dart';
 import 'package:pregnancy_flutter/routes/routes.dart';
 
@@ -53,21 +56,23 @@ class _HomeState extends BaseStatefulState<Home> {
                       children: [
                         HeartIndicator(),
                         const SizedBox(width: 20),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _babyInformationRow(0),
-                            const SizedBox(height: 16),
-                            _babyInformationRow(1),
-                            const SizedBox(height: 16),
-                            _babyInformationRow(2),
-                            const SizedBox(height: 16),
-                            _babyInformationRow(3),
-                            const SizedBox(height: 16),
-                            _babyInformationRow(4),
-                          ],
-                        )
+                        Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _babyInformationRow(0),
+                                const SizedBox(height: 16),
+                                _babyInformationRow(1),
+                                const SizedBox(height: 16),
+                                _babyInformationRow(2),
+                                const SizedBox(height: 16),
+                                _babyInformationRow(3),
+                                const SizedBox(height: 16),
+                                _babyInformationRow(4),
+                              ],
+                            )
+                        ),
                       ],
                     )
                 ),
@@ -131,34 +136,54 @@ class _HomeState extends BaseStatefulState<Home> {
   Widget _babyInformationRow(int index) {
     String title = '';
     String content = '-';
+    DateTime birthDate = getIt<CacheData>().getBirthDate ?? DateTime.now();
+    CacheData cache = getIt<CacheData>();
+    String motherName = cache.getMotherName ?? '';
+    String babyName = cache.getBabyName ?? '';
+
     switch (index){
       case 0:
         title = 'Mẹ bầu:';
+        content = motherName.isNotEmpty ? motherName : '-';
         break;
       case 1:
         title = 'Bé yêu:';
+        content = babyName.isNotEmpty ? babyName : '-';
         break;
       case 2:
         title = 'Dự sinh:';
+        content = birthDate.globalDateFormat(context);
         break;
       case 3:
         title = 'Tuổi thai:';
+        int babyAge = birthDate.convertFromBirthDateToBabyAge();
+        content = '${babyAge~/7} tuần ${babyAge%7} ngày';
         break;
       case 4:
         title = 'Ngày còn lại:';
+        int remainDays = birthDate.convertFromBirthDateToRemainDay();
+        content = '$remainDays ngày';
         break;
       case 5:
         title = 'Kỳ kinh cuối:';
+        DateTime lastPeriod = birthDate.convertFromBirthDateToLastPeriod();
+        content = lastPeriod.globalDateFormat(context);
         break;
       default:
         break;
     }
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(title).w600().text16().primaryTextColor(),
-        const SizedBox(width: 16),
-        Text(content).w500().text14().greyColor(),
+        Text(title).w400().text16().primaryTextColor().ellipsis(),
+        Expanded(
+            child: Container(
+              alignment: Alignment.centerRight,
+              child: Text(content).w600().text16().primaryTextColor().ellipsis(),
+            )
+        ),
       ],
     );
   }

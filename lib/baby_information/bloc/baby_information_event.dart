@@ -25,7 +25,7 @@ class SaveBabyNameEvent extends BaseEvent {
 }
 
 class SaveBirthDateEvent extends BaseEvent {
-  final DateTime time;
+  final DateTime? time;
   const SaveBirthDateEvent(this.time);
 
   @override
@@ -33,7 +33,7 @@ class SaveBirthDateEvent extends BaseEvent {
 }
 
 class SaveLastPriodEvent extends BaseEvent {
-  final DateTime time;
+  final DateTime? time;
   const SaveLastPriodEvent(this.time);
 
   @override

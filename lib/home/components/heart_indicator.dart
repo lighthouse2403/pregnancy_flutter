@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pregnancy_flutter/app_module.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
+import 'package:pregnancy_flutter/common/extension/date_time_extension.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/home/components/src/liquid_custom_progress_indicator.dart';
+import 'package:pregnancy_flutter/local/cache.dart';
 
 class HeartIndicator extends StatefulWidget {
   @override
@@ -10,17 +13,21 @@ class HeartIndicator extends StatefulWidget {
 }
 
 class _HeartIndicatorState extends State<HeartIndicator> with SingleTickerProviderStateMixin {
+  DateTime birthDate = getIt<CacheData>().getBirthDate ?? DateTime.now();
 
   @override
   Widget build(BuildContext context) {
+    int babyAge = birthDate.convertFromBirthDateToBabyAge();
+    double percent = babyAge/280;
+
     return Center(
       child: LiquidCustomProgressIndicator(
-        value: 0.4,
+        value: percent,
         direction: Axis.vertical,
         backgroundColor: Constants.secondaryTextColor().withOpacity(0.5),
         valueColor: AlwaysStoppedAnimation(Constants.pinkTextColor()),
         shapePath: _buildHeartPath(),
-        center: Text("40%").w600().primaryTextColor().text20(),
+        center: Text("${(percent.toInt())*100}%").w600().primaryTextColor().text20(),
       ),
     );
   }
