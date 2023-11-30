@@ -4,6 +4,7 @@ import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/font_size_extension.dart';
 import 'package:pregnancy_flutter/common/extension/font_weight_extension.dart';
 import 'package:pregnancy_flutter/common/extension/text_color_extension.dart';
+import 'package:pregnancy_flutter/common/firebase/firebase_user.dart';
 import 'package:pregnancy_flutter/diary/diary.dart';
 import 'package:pregnancy_flutter/home/home.dart';
 import 'package:pregnancy_flutter/index/index.dart';
@@ -54,6 +55,8 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
   @override
   void initState() {
     super.initState();
+    FirebaseUser.instance.addUser();
+    FirebaseUser.instance.updateLastTime();
   }
 
   /// Generate item colors

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pregnancy_flutter/app_module.dart';
+import 'package:pregnancy_flutter/common/widgets/loading_view.dart';
 import 'package:pregnancy_flutter/local/cache.dart';
 
 class BaseStatefulWidget extends StatefulWidget {
@@ -13,6 +14,7 @@ class BaseStatefulWidget extends StatefulWidget {
 class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   late double screenWidth;
  CacheData cache = getIt<CacheData>();
+  final LoadingView loadingView = LoadingView();
 
   @override
   void initState() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pregnancy_flutter/baby_information/baby_information.dart';
 import 'package:pregnancy_flutter/bottom_tab_bar/bottom_tab_bar.dart';
+import 'package:pregnancy_flutter/chat/chat.dart';
 import 'package:pregnancy_flutter/routes/route_name.dart';
 
 class Routes {
@@ -61,6 +62,8 @@ class Routes {
         return _pageRoute(page: const BabyInformation(), setting: settings);
       case RoutesName.tabBarRoute:
         return _pageRoute(page: const MainBottomTabBar(), setting: settings);
+      case RoutesName.chat:
+        return _pageRoute(page: const Chat(), setting: settings);
       default:
         return null;
     }

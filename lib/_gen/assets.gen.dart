@@ -55,6 +55,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/clinic.svg
   SvgGenImage get clinic => const SvgGenImage('assets/icons/clinic.svg');
 
+  /// File path: assets/icons/comments.svg
+  SvgGenImage get comments => const SvgGenImage('assets/icons/comments.svg');
+
   /// File path: assets/icons/diary.svg
   SvgGenImage get diary => const SvgGenImage('assets/icons/diary.svg');
 
@@ -76,6 +79,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/pregnancy.svg
   SvgGenImage get pregnancy => const SvgGenImage('assets/icons/pregnancy.svg');
 
+  /// File path: assets/icons/send.svg
+  SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
+
   /// File path: assets/icons/weight.svg
   SvgGenImage get weight => const SvgGenImage('assets/icons/weight.svg');
 
@@ -92,6 +98,7 @@ class $AssetsIconsGen {
         calendar,
         chat,
         clinic,
+        comments,
         diary,
         group,
         home,
@@ -99,6 +106,7 @@ class $AssetsIconsGen {
         knowledge,
         music,
         pregnancy,
+        send,
         weight
       ];
 }

@@ -126,4 +126,8 @@ extension TextExtension on Text? {
   Text left() {
     return Text(this?.data ?? '', style: this?.style, textAlign: TextAlign.left);
   }
+
+  Text right() {
+    return Text(this?.data ?? '', style: this?.style, textAlign: TextAlign.right);
+  }
 }

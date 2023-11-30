@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pregnancy_flutter/app_module.dart';
@@ -9,6 +7,7 @@ import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/date_time_extension.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/home/components/heart_indicator.dart';
+import 'package:pregnancy_flutter/home/components/home_item.dart';
 import 'package:pregnancy_flutter/local/cache.dart';
 import 'package:pregnancy_flutter/routes/route_name.dart';
 import 'package:pregnancy_flutter/routes/routes.dart';
@@ -50,7 +49,7 @@ class _HomeState extends BaseStatefulState<Home> {
             SliverToBoxAdapter(
               child: SafeArea(
                 child: Container(
-                    height: 180.0,
+                    height: 260.0,
                     margin: const EdgeInsets.symmetric(vertical: 20),
                     child: Row(
                       children: [
@@ -62,13 +61,13 @@ class _HomeState extends BaseStatefulState<Home> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 _babyInformationRow(0),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 20),
                                 _babyInformationRow(1),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 20),
                                 _babyInformationRow(2),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 20),
                                 _babyInformationRow(3),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 20),
                                 _babyInformationRow(4),
                               ],
                             )
@@ -86,7 +85,7 @@ class _HomeState extends BaseStatefulState<Home> {
                   crossAxisSpacing: 10.0),
               delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                  return _homeItem(index);
+                  return HomeItem(index: index);
                 },
                 childCount: Constants.homeItems.length,
               ),
@@ -97,37 +96,6 @@ class _HomeState extends BaseStatefulState<Home> {
               ),
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _homeItem(int index) {
-    return InkWell(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 3,
-              blurRadius: 7,
-              offset: const Offset(2, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 6),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Constants.homeItems[index].icon,
-              const SizedBox(height: 10),
-              Text(Constants.homeItems[index].title).w400().text14().primaryTextColor().center()
-            ],
-          ),
         ),
       ),
     );
