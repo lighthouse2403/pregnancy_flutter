@@ -162,7 +162,11 @@ class _HomeState extends BaseStatefulState<Home> {
       case 4:
         title = 'Ngày còn lại:';
         int remainDays = birthDate.convertFromBirthDateToRemainDay();
+
         content = '$remainDays ngày';
+        content = remainDays == 0 ? 'Ngày dự sinh' : content;
+        content = remainDays < 0 ? 'Quá ${remainDays.abs()} ngày' : content;
+
         break;
       case 5:
         title = 'Kỳ kinh cuối:';

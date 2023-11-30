@@ -32,7 +32,6 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
 
   @override
   PreferredSizeWidget? buildAppBar() {
-    // TODO: implement buildAppBar
     return AppBar(
       backgroundColor: Constants.mainColor(),
       leading: InkWell(
@@ -69,11 +68,10 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
                 children: [
-                  _inputRow(0),
+                  _inputMotherNameRow(),
                   Constants.vSpacer10,
-                  _inputRow(1),
+                  _inputBabyNameRow(),
                   Constants.vSpacer10,
                   _generateBirthDateRow(),
                   Constants.vSpacer10,
@@ -89,25 +87,46 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
     );
   }
 
-  Widget _inputRow(int index) {
-    String title = index == 0 ? 'Mẹ bầu:' : 'Bé yêu:';
-    TextEditingController? controller = index == 0 ? motherNameController : babyNameController;
+  Widget _inputMotherNameRow() {
+    if (cache.getMotherName != null) {
+      motherNameController.text = getIt<CacheData>().getMotherName ?? '';
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title).w400().text15().primaryTextColor().left(),
+        const Text('Mẹ bầu:').w400().text15().primaryTextColor().left(),
         Constants.vSpacer4,
         CustomTextField(
-          controller: controller,
+          hintText: 'Nhập tên mẹ bầu',
+          controller: motherNameController,
           enable: true,
           onTextChanged: (value) {
-            if (index == 0) {
-              babyInformationBloc.add(SaveMotherNameEvent(value));
-            } else {
-              babyInformationBloc.add(SaveBabyNameEvent(value));
-            }
+            babyInformationBloc.add(SaveMotherNameEvent(value));
+          },
+        )
+      ],
+    );
+  }
+
+  Widget _inputBabyNameRow() {
+    if (cache.getBabyName != null) {
+      babyNameController.text = getIt<CacheData>().getBabyName ?? '';
+    }
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text('Bé yêu:').w400().text15().primaryTextColor().left(),
+        Constants.vSpacer4,
+        CustomTextField(
+          hintText: 'Nhập tên bé yêu',
+          controller: babyNameController,
+          enable: true,
+          onTextChanged: (value) {
+            babyInformationBloc.add(SaveBabyNameEvent(value));
           },
         )
       ],
@@ -131,27 +150,32 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(title).w400().text15().primaryTextColor().left(),
-        CustomButton(
-          horizontalPadding: 0,
-          titleAlignment: Alignment.centerLeft,
-          title: currentDate.globalDateFormat(context),
-          onTappedAction: () async {
-            final date = await showDatePicker2(
-              context: context,
-              initialDate: currentDate,
-              firstDate: DateTime(DateTime.now().year - 1),
-              currentDate: DateTime.now(),
-              lastDate: DateTime(DateTime.now().year + 2),
-              cancelText: 'Huỷ',
-              confirmText: 'Xong',
-            );
+        Expanded(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: CustomButton(
+                horizontalPadding: 0,
+                titleAlignment: Alignment.centerRight,
+                title: currentDate.globalDateFormat(context),
+                onTappedAction: () async {
+                  final date = await showDatePicker2(
+                    context: context,
+                    initialDate: currentDate,
+                    firstDate: DateTime(DateTime.now().year - 1),
+                    currentDate: DateTime.now(),
+                    lastDate: DateTime(DateTime.now().year + 2),
+                    cancelText: 'Huỷ',
+                    confirmText: 'Xong',
+                  );
 
-            if (title == 'Dự sinh:') {
-              babyInformationBloc.add(SaveBirthDateEvent(date));
-            } else {
-              babyInformationBloc.add(SaveLastPriodEvent(date));
-            }
-          },
+                  if (title == 'Dự sinh:') {
+                    babyInformationBloc.add(SaveBirthDateEvent(date));
+                  } else {
+                    babyInformationBloc.add(SaveLastPriodEvent(date));
+                  }
+                },
+              ),
+            )
         )
       ],
     );
@@ -161,25 +185,31 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
     DateTime birthDate = getIt<CacheData>().getBirthDate ?? DateTime.now();
     int babyAge = birthDate.convertFromBirthDateToBabyAge();
 
-    print(babyAge~/7);
     return Row(
       children: [
         const Text('Tuổi thai').w400().text15().primaryTextColor().left(),
         Constants.hSpacer10,
-        CustomButton(
-          title: '${babyAge~/7} tuần ${babyAge%7} ngày',
-          onTappedAction: () {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              context: context,
-              builder: (context) {
-                return BabyAgeWidget(40, 7, (birthDate) {
-                  babyInformationBloc.add(SaveBirthDateEvent(birthDate));
-                });
-              },
-            );
-          },
+        Expanded(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: CustomButton(
+                horizontalPadding: 0,
+                titleAlignment: Alignment.centerRight,
+                title: '${babyAge~/7} tuần ${babyAge%7} ngày',
+                onTappedAction: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return BabyAgeWidget(40, 7, (birthDate) {
+                        babyInformationBloc.add(SaveBirthDateEvent(birthDate));
+                      });
+                    },
+                  );
+                },
+              ),
+            )
         )
       ],
     );

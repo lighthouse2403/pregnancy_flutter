@@ -7,6 +7,8 @@ import 'package:pregnancy_flutter/home/components/src/liquid_custom_progress_ind
 import 'package:pregnancy_flutter/local/cache.dart';
 
 class HeartIndicator extends StatefulWidget {
+  const HeartIndicator({super.key});
+
   @override
   State<StatefulWidget> createState() =>
       _HeartIndicatorState();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pregnancy_flutter/local/cache.dart';
 import 'package:pregnancy_flutter/routes/route_name.dart';
 import 'package:pregnancy_flutter/routes/routes.dart';
 import 'app_module.dart';
@@ -25,12 +24,7 @@ class PregnancyApp extends StatelessWidget {
           data:
           MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
           child: child!),
-      initialRoute: _generateFirstScreen(),
+      initialRoute: RoutesName.tabBarRoute,
     );
-  }
-
-  String _generateFirstScreen() {
-    String? babyName = getIt<CacheData>().getBabyName;
-    return babyName != null ? RoutesName.babyInformation : RoutesName.tabBarRoute;
   }
 }

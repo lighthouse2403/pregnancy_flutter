@@ -25,7 +25,7 @@ void _saveMotherName(SaveMotherNameEvent event, Emitter<BaseState> emit) async {
 }
 
 void _saveBabyName(SaveBabyNameEvent event, Emitter<BaseState> emit) async {
-  getIt<CacheData>().saveMotherName(event.name);
+  getIt<CacheData>().saveBabyName(event.name);
 }
 
 void _saveBirthDate(SaveBirthDateEvent event, Emitter<BaseState> emit) async {
