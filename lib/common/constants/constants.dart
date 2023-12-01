@@ -91,6 +91,8 @@ class Constants {
   static Widget vSpacer12 = const SizedBox(height: 12);
   static Widget vSpacer16 = const SizedBox(height: 16);
   static Widget vSpacer20 = const SizedBox(height: 20);
+  static Widget vSpacer30 = const SizedBox(height: 30);
+  static Widget vSpacer90 = const SizedBox(height: 90);
 
   static Widget hSpacer2 = const SizedBox(width: 2);
   static Widget hSpacer4 = const SizedBox(width: 4);
@@ -100,10 +102,27 @@ class Constants {
   static Widget hSpacer12 = const SizedBox(width: 12);
   static Widget hSpacer16 = const SizedBox(width: 16);
   static Widget hSpacer20 = const SizedBox(width: 20);
-  ///Border
 
+  ///Border
   static const double marginEdge = 16;
   static const double radius = 8;
   static const double dividerHeight = 1;
   static const double borderWidth = 1;
+
+  /// Calendar
+  static List<String> months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  static List<String> days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  //Color
+  static Color BOX_SELECTED_COLOR = mainColor();
+  static Color BOX_TODAY_COLOR = mainColor();
+  static Color EVENT_DOT_COLOR = Colors.red;
+  static Color DAY_TEXT_SELECTED = Colors.white;
+  static Color DAY_TEXT_OTHER = Colors.grey;
+  static Color DAY_TEXT_NORMAL = Colors.black;
+  static Color DOT_COLOR = Colors.red;
+  static Color DOW_TEXT_COLOR = Colors.black;
+
+//header day of week
+  static double DOW_TEXT_SIZE = 15.0;
 }

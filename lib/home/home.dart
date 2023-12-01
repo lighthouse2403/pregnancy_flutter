@@ -42,7 +42,7 @@ class _HomeState extends BaseStatefulState<Home> {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/pregnancy_backgroound_3.jpg'),
-              fit: BoxFit.fill),
+              fit: BoxFit.cover),
         ),
         child: CustomScrollView(
           slivers: <Widget>[
