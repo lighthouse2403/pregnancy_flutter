@@ -8,6 +8,7 @@ import 'package:pregnancy_flutter/calendar/model/quote_VO.dart';
 import 'package:pregnancy_flutter/calendar/services/data_service.dart';
 import 'package:pregnancy_flutter/calendar/utils/date_utils.dart';
 import 'package:pregnancy_flutter/calendar/utils/lunar_solar_utils.dart';
+import 'package:pregnancy_flutter/common/Widgets/custom_button.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/font_size_extension.dart';
 import 'package:pregnancy_flutter/common/extension/font_weight_extension.dart';
@@ -100,36 +101,38 @@ class _SingleDayContainerState extends State<SingleDayContainer>
 
   Widget getHeader(context) {
     var title = 'Tháng ${_selectedDate.month} - ${_selectedDate.year}';
-    return Positioned(
-      top: 40,
-      left: 10,
-      right: 10,
-      child: Stack(
-        children: <Widget>[
-          Align(
-              alignment: Alignment.topRight,
-              child: SelectDateButton(
-                  title: title,
-                  onPress: () {
-                    _showDatePicker(context);
-                  })),
-          Align(
-            alignment: Alignment.topLeft,
-              child: SizedBox(
-                height: 40,
-                  width: 100,
-                  child: GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        _selectedDate = DateTime.now();
-                      });
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Stack(
+          children: <Widget>[
+            Align(
+                alignment: Alignment.topRight,
+                child: CustomButton(
+                    title: title,
+                    onTappedAction: () {
+                      _showDatePicker(context);
                     },
-                    child: Center(
-                      child: const Text("Hôm Nay").w700().text16().blackColor(),
-                    ),
-                  ))
-          )
-        ],
+                  ),
+            ),
+            Align(
+                alignment: Alignment.topLeft,
+                child: SizedBox(
+                    height: 40,
+                    width: 100,
+                    child: GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          _selectedDate = DateTime.now();
+                        });
+                      },
+                      child: Center(
+                        child: const Text("Hôm Nay").w700().text16().blackColor(),
+                      ),
+                    ))
+            )
+          ],
+        ),
       ),
     );
   }
@@ -140,9 +143,6 @@ class _SingleDayContainerState extends State<SingleDayContainer>
     if (_quoteData.isNotEmpty) {
       quote = _quoteData[_selectedDate.day % _quoteData.length];
     }
-    TextStyle dayOfWeekStyle = const TextStyle().textW700().text18().mainColor();
-    TextStyle quoteStyle = const TextStyle().textW400().text18().blackColor();
-    TextStyle quoteAuthorStyle = const TextStyle().textW700().text18().blackColor();
 
     return Expanded(
       child: SwipeDetector(
@@ -163,40 +163,39 @@ class _SingleDayContainerState extends State<SingleDayContainer>
                   fit: BoxFit.cover,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 60),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
+              Column(
+                children: <Widget>[
+                  Padding(
                       padding: const EdgeInsets.only(top: 100),
                       child: StrokeText(
                           _selectedDate.day.toString(),
                           FontWeight.w700,
                           fontSize: 120,
-                          color: Colors.black,
+                          color: Constants.primaryTextColor(),
                           strokeColor: Colors.white,
                           strokeWidth: 0
                       )
-                    ),
-                    Constants.vSpacer20,
-                    paddingText(5, dayOfWeek, dayOfWeekStyle),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: paddingText(20, quote.content, quoteStyle),
+                  ),
+                  Text(dayOfWeek).w700().text20().primaryTextColor().center(),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(quote.content).w400().text16().blackColor().center(),
+                          Constants.vSpacer30,
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(quote.author).w600().text14().blackColor(),
+                          ),
+                        ],
                       ),
-                    ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: paddingText(20, quote.author, quoteAuthorStyle),
-                      ),
-                    ),
-                    Expanded(
-                      child: getDateInfo(),
                     )
-                  ],
-                ),
+                  ),
+                  getDateInfo()
+                ],
               ),
               getHeader(context),
             ],
@@ -284,7 +283,8 @@ class _SingleDayContainerState extends State<SingleDayContainer>
     super.build(context);
     return Column(children: <Widget>[
       getMainDate(),
-    ]);
+    ]
+    );
   }
 
   @override
