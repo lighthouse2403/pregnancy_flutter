@@ -8,8 +8,14 @@ import 'package:pregnancy_flutter/calendar/model/quote_VO.dart';
 import 'package:pregnancy_flutter/calendar/services/data_service.dart';
 import 'package:pregnancy_flutter/calendar/utils/date_utils.dart';
 import 'package:pregnancy_flutter/calendar/utils/lunar_solar_utils.dart';
+import 'package:pregnancy_flutter/common/constants/constants.dart';
+import 'package:pregnancy_flutter/common/extension/font_size_extension.dart';
+import 'package:pregnancy_flutter/common/extension/font_weight_extension.dart';
+import 'package:pregnancy_flutter/common/extension/text_color_extension.dart';
+import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 
 class SingleDayContainer extends StatefulWidget {
+  const SingleDayContainer({super.key});
   @override
   State createState() {
     return _SingleDayContainerState();
@@ -87,14 +93,13 @@ class _SingleDayContainerState extends State<SingleDayContainer>
 
   Widget paddingText(double top, String text, TextStyle style) {
     return Padding(
-      padding: EdgeInsets.only(top: top, left: 10, right: 10),
-      child: Text(text, style: style),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Text(text, style: style).center(),
     );
   }
 
   Widget getHeader(context) {
     var title = 'Tháng ${_selectedDate.month} - ${_selectedDate.year}';
-    var todayStyle = const TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
     return Positioned(
       top: 40,
       left: 10,
@@ -120,9 +125,7 @@ class _SingleDayContainerState extends State<SingleDayContainer>
                       });
                     },
                     child: Center(
-                      child: Text("Hôm Nay",
-                        style: todayStyle,
-                      ),
+                      child: const Text("Hôm Nay").w700().text16().blackColor(),
                     ),
                   ))
           )
@@ -132,28 +135,14 @@ class _SingleDayContainerState extends State<SingleDayContainer>
   }
 
   Widget getMainDate() {
-    var backgroundIndex = (_selectedDate.day % 17);
     var dayOfWeek = getNameDayOfWeek(_selectedDate);
     var quote = QuoteVO("", "");
     if (_quoteData.isNotEmpty) {
       quote = _quoteData[_selectedDate.day % _quoteData.length];
     }
-    const dayOfWeekStyle = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 30,
-    );
-
-    const quoteStyle = TextStyle(
-      color: Colors.black,
-      fontSize: 18,
-    );
-
-    const quoteAuthorStyle = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 18,
-    );
+    TextStyle dayOfWeekStyle = const TextStyle().textW700().text18().mainColor();
+    TextStyle quoteStyle = const TextStyle().textW400().text18().blackColor();
+    TextStyle quoteAuthorStyle = const TextStyle().textW700().text18().blackColor();
 
     return Expanded(
       child: SwipeDetector(
@@ -168,11 +157,10 @@ class _SingleDayContainerState extends State<SingleDayContainer>
           child: (
               Stack(
             children: <Widget>[
-              Positioned.fill(
+              const Positioned.fill(
                 child: Image(
-                  image: AssetImage('assets/image_${backgroundIndex + 1}.jpg'),
+                  image: AssetImage('assets/images/pregnancy_backgroound_3.jpg'),
                   fit: BoxFit.cover,
-                  width: 900,
                 ),
               ),
               Padding(
@@ -187,9 +175,10 @@ class _SingleDayContainerState extends State<SingleDayContainer>
                           fontSize: 120,
                           color: Colors.black,
                           strokeColor: Colors.white,
-                          strokeWidth: 0)
-
+                          strokeWidth: 0
+                      )
                     ),
+                    Constants.vSpacer20,
                     paddingText(5, dayOfWeek, dayOfWeekStyle),
                     Expanded(
                       child: Align(
@@ -200,8 +189,7 @@ class _SingleDayContainerState extends State<SingleDayContainer>
                     Expanded(
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child:
-                            paddingText(20, quote.author, quoteAuthorStyle),
+                        child: paddingText(20, quote.author, quoteAuthorStyle),
                       ),
                     ),
                     Expanded(
@@ -221,11 +209,9 @@ class _SingleDayContainerState extends State<SingleDayContainer>
   Widget infoBox(Widget widget, bool hasBorder) {
     return Expanded(
       child: (Container(
-        padding: EdgeInsets.only(right: 10),
+        padding: const EdgeInsets.only(right: 10),
         decoration: BoxDecoration(
-            border: Border(
-                right:
-                    BorderSide(color: Colors.grey, width: hasBorder ? 1 : 0))),
+            border: Border(right: BorderSide(color: Colors.grey, width: hasBorder ? 1 : 0))),
         child: widget,
       )),
     );
@@ -303,5 +289,4 @@ class _SingleDayContainerState extends State<SingleDayContainer>
 
   @override
   bool get wantKeepAlive => true;
-
 }

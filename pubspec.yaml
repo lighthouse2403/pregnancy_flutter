@@ -77,7 +77,9 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/data/json/
-
+    - assets/events.json
+    - assets/quotes.json
+    -
 flutter_gen:
   output: lib/_gen/
   line_length: 80

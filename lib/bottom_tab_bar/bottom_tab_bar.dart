@@ -26,7 +26,7 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
     const Pregnancy(),
     const Diary(),
     const Index(),
-    MonthContainer()
+    SingleDayContainer()
   ];
 
   @override
