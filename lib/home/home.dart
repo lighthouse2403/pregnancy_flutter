@@ -126,6 +126,9 @@ class _HomeState extends BaseStatefulState<Home> {
         title = 'Tuổi thai:';
         int babyAge = birthDate.convertFromBirthDateToBabyAge();
         content = '${babyAge~/7} tuần ${babyAge%7} ngày';
+        if (babyAge < 0) {
+          content = '-';
+        }
         break;
       case 4:
         title = 'Ngày còn lại:';

@@ -185,6 +185,10 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
     DateTime birthDate = getIt<CacheData>().getBirthDate ?? DateTime.now();
     int babyAge = birthDate.convertFromBirthDateToBabyAge();
 
+    String weeks = '${babyAge~/7} tuần ${babyAge%7} ngày';
+    if (babyAge < 0) {
+      weeks = '-';
+    }
     return Row(
       children: [
         const Text('Tuổi thai').w400().text15().primaryTextColor().left(),
@@ -195,7 +199,7 @@ class _BabyInformationState extends BaseStatefulState<BabyInformation> {
               child: CustomButton(
                 horizontalPadding: 0,
                 titleAlignment: Alignment.centerRight,
-                title: '${babyAge~/7} tuần ${babyAge%7} ngày',
+                title: weeks,
                 onTappedAction: () {
                   showModalBottomSheet(
                     isScrollControlled: true,

@@ -38,5 +38,6 @@ void _saveLastPeriod(SaveLastPriodEvent event, Emitter<BaseState> emit) async {
   emit(StartToChangeBabyInformation());
   DateTime lastPeriod = event.time ?? DateTime.now();
   await getIt<CacheData>().saveBirthDate(lastPeriod.convertFromLastPeriodToBirthDate());
+  print('lastPeriod $lastPeriod');
   emit(SavedBirthDateSuccessful());
 }
