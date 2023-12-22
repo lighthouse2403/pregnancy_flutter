@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:pregnancy_flutter/baby_information/baby_information.dart';
 import 'package:pregnancy_flutter/bottom_tab_bar/bottom_tab_bar.dart';
 import 'package:pregnancy_flutter/chat/chat.dart';
+import 'package:pregnancy_flutter/chat/child_widget/chat_detail.dart';
+import 'package:pregnancy_flutter/chat/thread_model.dart';
+import 'package:pregnancy_flutter/doctor/doctor.dart';
+import 'package:pregnancy_flutter/doctor/doctor_detail.dart';
+import 'package:pregnancy_flutter/doctor/doctor_model.dart';
 import 'package:pregnancy_flutter/routes/route_name.dart';
+import 'package:pregnancy_flutter/vaccination/vaccination.dart';
 
 class Routes {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -64,6 +70,16 @@ class Routes {
         return _pageRoute(page: const MainBottomTabBar(), setting: settings);
       case RoutesName.chat:
         return _pageRoute(page: const Chat(), setting: settings);
+      case RoutesName.chatDetail:
+        ThreadModel thread = settings.arguments as ThreadModel;
+        return _pageRoute(page: ChatDetail(thread: thread), setting: settings);
+      case RoutesName.doctor:
+        return _pageRoute(page: const Doctor(), setting: settings);
+      case RoutesName.doctorDetail:
+        DoctorModel doctor = settings.arguments as DoctorModel;
+        return _pageRoute(page: DoctorDetail(doctor: doctor), setting: settings);
+      case RoutesName.vaccination:
+        return _pageRoute(page: const Vaccination(), setting: settings);
       default:
         return null;
     }

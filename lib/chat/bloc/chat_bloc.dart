@@ -8,8 +8,6 @@ import 'package:pregnancy_flutter/common/firebase/firebase_chat.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
   int paging = 100;
-  String password = '';
-  bool isSavedUserId = false;
   List<ThreadModel> threads = [];
 
   ChatBloc() : super(const ChatState()) {
@@ -25,7 +23,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       threads = await FirebaseChat.instance.loadThread();
       emit(const LoadingSuccessfulState());
     } catch (error) {
-      print(error);
       emit(const LoadingThreadFailState());
     }
   }

@@ -19,8 +19,14 @@ class _HomeItemState extends State<HomeItem> with SingleTickerProviderStateMixin
     return InkWell(
       onTap: () {
         switch (widget.index) {
-            case 0:
+          case 0:
               Routes.instance.navigateTo(RoutesName.chat);
+            break;
+          case 5:
+            Routes.instance.navigateTo(RoutesName.doctor);
+            break;
+          case 8:
+            Routes.instance.navigateTo(RoutesName.vaccination);
             break;
             default:
             break;
