@@ -12,7 +12,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title ?? '').w800().text18().whiteColor().ellipsis(),
+      title: Text(title ?? '').w600().text18().whiteColor().ellipsis(),
       backgroundColor: AppColors.mainColor,
       actions: actions,
       leading: leading,
@@ -20,6 +20,5 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(56);
 }

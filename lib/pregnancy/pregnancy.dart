@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
-import 'package:pregnancy_flutter/home/components/heart_indicator.dart';
+import 'package:pregnancy_flutter/pregnancy/bloc/pregnancy_process_bloc.dart';
+import 'package:pregnancy_flutter/pregnancy/bloc/pregnancy_process_event.dart';
+import 'package:pregnancy_flutter/pregnancy/bloc/pregnancy_process_state.dart';
+import 'package:pregnancy_flutter/pregnancy/pregnancy_content.dart';
 
 class Pregnancy extends BaseStatefulWidget {
   const Pregnancy({super.key});
@@ -12,77 +16,59 @@ class Pregnancy extends BaseStatefulWidget {
   State<Pregnancy> createState() => _PregnancyState();
 }
 
-class _PregnancyState extends BaseStatefulState<Pregnancy> {
+class _PregnancyState extends BaseStatefulState<Pregnancy> with
+    SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+  PregnancyProcessBloc processBloc = PregnancyProcessBloc()..add(const LoadPregnancyProcessEvent());
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 40, vsync: this);
+  }
 
   @override
   PreferredSizeWidget? buildAppBar() {
     return AppBar(
-      title: Text('Soc-Tho').w700().text18().whiteColor(),
+      backgroundColor: Constants.mainColor(),
+      titleSpacing: 0,
+      title: const Text('Thai kỳ').w600().text18().whiteColor().ellipsis(),
+      bottom: TabBar(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        indicatorColor: Colors.white,
+        controller: _tabController,
+        isScrollable: true,
+        tabs: List<int>.generate(40, (i) => i + 1).map((e) => Text('Tuần ${e}')).toList(),
+        labelColor: Colors.white,
+        unselectedLabelColor: Constants.secondaryTextColor(),
+        dividerColor: Colors.transparent,
+      ),
     );
   }
 
   @override
   Widget? buildBody() {
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverToBoxAdapter(
-          child: Container(
-            height: 260.0,
-            child: HeartIndicator(),
-          ),
-        ),
-        SliverGrid(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 1.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0),
-          delegate: SliverChildBuilderDelegate(
-                (context, index) {
-              return _homeItem(index);
-            },
-            childCount: Constants.homeItems.length,
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 80.0),
-        )
-      ],
-    );
-  }
-
-  Widget _homeItem(int index) {
-    return InkWell(
-      child: Column(
-        children: [
-          Text(Constants.homeItems[index].title)
-        ],
+    return BlocProvider(
+      create: (context) => processBloc,
+      child: BlocListener<PregnancyProcessBloc, PregnancyProcessState>(
+          listener: (context, state) {
+            if (state is LoadingSuccessfulState) {
+              setState(() {
+              });
+            }
+          },
+          child: TabBarView(
+            controller: _tabController,
+            children: _childrenView(),
+          )
       ),
     );
   }
 
-  Widget _babyInformationRow(int index) {
-    String title;
-    String content;
-    switch (index){
-      case 0:
-        title = 'Mẹ bầu:';
-        break;
-      case 1:
-        title = 'Mẹ bầu:';
-        break;
-      case 2:
-        title = 'Mẹ bầu:';
-        break;
-      default:
-        break;
+  List<Widget> _childrenView() {
+    if (processBloc.process.isNotEmpty) {
+      return processBloc.process.map((e) => PregnancyContent(process: e)).toList();
     }
-
-    return Row(
-      children: [
-        Text('Tuổi thai:').w500().text14().greyColor(),
-        Text('30 tuần 2 ngày').w500().text14().greyColor(),
-      ],
-    );
+    return List<int>.generate(40, (i) => i + 1).map((e) => const Text('Đang tải dữ liệu...')).toList();
   }
 }

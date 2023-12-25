@@ -35,7 +35,7 @@ class VaccinationRowState extends State<VaccinationRow> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('${widget.vaccination.name}').w600().text15().mainColor().ellipsis(),
+          Text(widget.vaccination.name).w600().text15().mainColor().ellipsis(),
           const SizedBox(height: 6),
           Row(
             children: [

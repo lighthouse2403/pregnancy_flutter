@@ -33,11 +33,10 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: tabs[selectedIndex]
-        // IndexedStack(
-        //   index: selectedIndex,
-        //   children: tabs,
-        // ),
+          child: IndexedStack(
+          index: selectedIndex,
+          children: tabs,
+        ),
       ),
       bottomNavigationBar:
       BottomNavigationBar(

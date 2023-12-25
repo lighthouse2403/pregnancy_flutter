@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pregnancy_flutter/app_module.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
@@ -24,13 +22,6 @@ class _HomeState extends BaseStatefulState<Home> {
   @override
   void initState() {
     super.initState();
-    readJson();
-  }
-
-  // Fetch content from the json file
-  Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/data/json/doctor.json');
-    final data = await json.decode(response);
   }
 
   @override
@@ -42,7 +33,8 @@ class _HomeState extends BaseStatefulState<Home> {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/pregnancy_backgroound_3.jpg'),
-              fit: BoxFit.cover),
+              fit: BoxFit.cover
+          ),
         ),
         child: CustomScrollView(
           slivers: <Widget>[

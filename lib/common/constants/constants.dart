@@ -5,53 +5,56 @@ import 'package:pregnancy_flutter/bottom_tab_bar/bottom_tab_bar_item.dart';
 import 'package:pregnancy_flutter/common/constants/models/homeItem.dart';
 
 class Constants {
-  static List<HomeItem> homeItems = [
-    HomeItem(Assets.icons.chat.svg(width: 30,
-        height: 30,
-        colorFilter: ColorFilter.mode(
-            Constants.pinkTextColor(), BlendMode.srcIn)), 'Góc chia sẻ'),
-    HomeItem(Assets.icons.babyKick.svg(width: 30,
+  static List<BaseItem> homeItems = [
+    BaseItem(
+        Assets.icons.chat.svg(
+          width: 30,
+          height: 30,
+          colorFilter: ColorFilter.mode(Constants.pinkTextColor(), BlendMode.srcIn)
+        ),
+        'Góc chia sẻ'),
+    BaseItem(Assets.icons.babyKick.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Số lần đạp'),
-    HomeItem(Assets.icons.weight.svg(width: 30,
+    BaseItem(Assets.icons.weight.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Cân nặng'),
-    HomeItem(Assets.icons.knowledge.svg(width: 30,
+    BaseItem(Assets.icons.knowledge.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Kiến thức'),
-    HomeItem(Assets.icons.music.svg(width: 30,
+    BaseItem(Assets.icons.music.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Âm nhạc'),
-    HomeItem(Assets.icons.clinic.svg(width: 30,
+    BaseItem(Assets.icons.clinic.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Danh sách bác sỹ'),
-    HomeItem(Assets.icons.babyClothes.svg(width: 30,
+    BaseItem(Assets.icons.babyClothes.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Đồ sơ sinh'),
-    HomeItem(Assets.icons.babyName.svg(width: 30,
+    BaseItem(Assets.icons.babyName.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Tên hay'),
-    HomeItem(Assets.icons.injection.svg(width: 30,
+    BaseItem(Assets.icons.injection.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Địa chỉ phòng tiêm'),
-    HomeItem(Assets.icons.alarm.svg(width: 30,
+    BaseItem(Assets.icons.alarm.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Nhắc nhở'),
-    HomeItem(Assets.icons.diary.svg(width: 30,
+    BaseItem(Assets.icons.diary.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)),
         'Ứng dụng chu kỳ kinh'),
-    HomeItem(Assets.icons.group.svg(width: 30,
+    BaseItem(Assets.icons.group.svg(width: 30,
         height: 30,
         colorFilter: ColorFilter.mode(
             Constants.pinkTextColor(), BlendMode.srcIn)), 'Nhóm thảo luận'),
@@ -66,21 +69,10 @@ class Constants {
   ];
 
   /// Color
-  static Color mainColor() {
-    return const Color(0xFF47AC66);
-  }
-
-  static Color pinkTextColor() {
-    return const Color(0xFFFF66A3);
-  }
-
-  static Color primaryTextColor() {
-    return const Color(0xFF0B0B1E);
-  }
-
-  static Color secondaryTextColor() {
-    return const Color(0xFFA3A3AC);
-  }
+  static Color mainColor() => const Color(0xFF47AC66);
+  static Color pinkTextColor() => const Color(0xFFFF66A3);
+  static Color primaryTextColor() => const Color(0xFF0B0B1E);
+  static Color secondaryTextColor() => const Color(0xFFA3A3AC);
 
   /// Spacer
   static Widget vSpacer2 = const SizedBox(height: 2);
@@ -125,4 +117,28 @@ class Constants {
 
 //header day of week
   static double DOW_TEXT_SIZE = 15.0;
+
+  /// Store id
+  static String iOSPeriodTrackerAppId = '1528917480';
+  static String androidPeriodTrackerAppId = '1528917480';
+}
+
+enum KnowLedgeType {
+  story(0),
+  beforePregnancy(1),
+  inPregnancy(2),
+  inHospital(3),
+  afterPregnancy(4),
+  experiences(5),
+  nutrition(6),
+  makeFood(7);
+
+  final int value;
+
+  const KnowLedgeType(this.value);
+
+  @override
+  int toInt() {
+    return value;
+  }
 }

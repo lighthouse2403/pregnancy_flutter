@@ -46,7 +46,7 @@ class _VaccinationState extends BaseStatefulState<Vaccination> {
   @override
   PreferredSizeWidget? buildAppBar() {
     return BaseAppBar(
-        title: 'Bác sỹ',
+        title: 'Phòng tiêm chủng',
         leading: InkWell(
           onTap: () => Routes.instance.pop(),
           child: Align(

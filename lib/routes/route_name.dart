@@ -7,5 +7,7 @@ class RoutesName {
   static const String doctor = '/home/doctor';
   static const String doctorDetail = '/home/doctor/doctorDetail';
   static const String vaccination = '/home/vaccination';
-
+  static const String knowledge = '/home/knowledge';
+  static const String knowledgeList = '/home/knowledge/list';
+  static const String knowledgeDetail = '/home/knowledgeDetail';
 }

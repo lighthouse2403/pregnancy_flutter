@@ -4,9 +4,13 @@ import 'package:pregnancy_flutter/bottom_tab_bar/bottom_tab_bar.dart';
 import 'package:pregnancy_flutter/chat/chat.dart';
 import 'package:pregnancy_flutter/chat/child_widget/chat_detail.dart';
 import 'package:pregnancy_flutter/chat/thread_model.dart';
+import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/doctor/doctor.dart';
 import 'package:pregnancy_flutter/doctor/doctor_detail.dart';
 import 'package:pregnancy_flutter/doctor/doctor_model.dart';
+import 'package:pregnancy_flutter/knowledge/knowledge.dart';
+import 'package:pregnancy_flutter/knowledge/knowledge_detail.dart';
+import 'package:pregnancy_flutter/knowledge/knowledge_list.dart';
 import 'package:pregnancy_flutter/routes/route_name.dart';
 import 'package:pregnancy_flutter/vaccination/vaccination.dart';
 
@@ -80,6 +84,14 @@ class Routes {
         return _pageRoute(page: DoctorDetail(doctor: doctor), setting: settings);
       case RoutesName.vaccination:
         return _pageRoute(page: const Vaccination(), setting: settings);
+      case RoutesName.knowledge:
+        return _pageRoute(page: const Knowledge(), setting: settings);
+      case RoutesName.knowledgeList:
+        KnowLedgeType knowLedgeType = settings.arguments as KnowLedgeType;
+        return _pageRoute(page: KnowledgeList(type: knowLedgeType), setting: settings);
+      case RoutesName.knowledgeDetail:
+        String detail = settings.arguments as String;
+        return _pageRoute(page: KnowledgeDetail(content: detail), setting: settings);
       default:
         return null;
     }

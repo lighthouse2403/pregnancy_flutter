@@ -40,7 +40,7 @@ extension TextExtension on Text? {
   }
 
   Text w500() {
-    return Text(this?.data ?? '', style: this?.style.textW500());
+    return Text(this?.data ?? '', style: this?.style.textW500(), textAlign: this?.textAlign);
   }
 
   Text w600() {

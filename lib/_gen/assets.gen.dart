@@ -172,8 +172,8 @@ class $AssetsDataJsonGen {
   /// File path: assets/data/json/hospital_list.json
   String get hospitalList => 'assets/data/json/hospital_list.json';
 
-  /// File path: assets/data/json/know_ledge.json
-  String get knowLedge => 'assets/data/json/know_ledge.json';
+  /// File path: assets/data/json/knowledge.json
+  String get knowLedge => 'assets/data/json/knowledge.json';
 
   /// File path: assets/data/json/labor_and_birth.json
   String get laborAndBirth => 'assets/data/json/labor_and_birth.json';
