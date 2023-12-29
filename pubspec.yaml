@@ -52,6 +52,8 @@ dependencies:
   fluttertoast: ^8.2.1
   package_info_plus: ^5.0.1
   url_launcher: ^6.2.2
+  audio_service: ^0.18.12
+  just_audio: ^0.9.36
 
 dev_dependencies:
   flutter_test:
