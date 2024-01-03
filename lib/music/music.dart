@@ -1,4 +1,3 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pregnancy_flutter/_gen/assets.gen.dart';
@@ -17,7 +16,6 @@ class Music extends BaseStatefulWidget {
 
 class _KnowledgeState extends BaseStatefulState<Music> {
   final ScrollController _controller = ScrollController();
-  late AudioHandler _audioHandler;
 
   List<MusicModel> musics = [
     MusicModel(name: 'Bản nhạc 1', path: 'pregnancy_sound_1', status: false),
@@ -34,14 +32,7 @@ class _KnowledgeState extends BaseStatefulState<Music> {
   }
 
   void initAudio() async {
-    _audioHandler = await AudioService.init(
-      builder: () => AudioPlayerHandler(),
-      config: const AudioServiceConfig(
-        androidNotificationChannelId: 'com.ryanheise.myapp.channel.audio',
-        androidNotificationChannelName: 'Audio playback',
-        androidNotificationOngoing: true,
-      ),
-    );
+
   }
 
   @override
