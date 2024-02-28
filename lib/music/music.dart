@@ -8,6 +8,7 @@ import 'package:pregnancy_flutter/_gen/assets.gen.dart';
 import 'package:pregnancy_flutter/common/base/base_app_bar.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
+import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/music/audio_handler.dart';
 import 'package:pregnancy_flutter/music/play_button.dart';
 import 'package:pregnancy_flutter/routes/routes.dart';
@@ -82,7 +83,6 @@ class _AudiosState extends BaseStatefulState<Audios> {
   Future<void> _init() async {
     final session = await AudioSession.instance;
     await session.configure(const AudioSessionConfiguration.speech());
-    // Listen to errors during playback.
     _player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
           print('A stream error occurred: $e');
@@ -130,30 +130,28 @@ class _AudiosState extends BaseStatefulState<Audios> {
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                child: StreamBuilder<SequenceState?>(
-                  stream: _player.sequenceStateStream,
-                  builder: (context, snapshot) {
-                    final state = snapshot.data;
-                    if (state?.sequence.isEmpty ?? true) {
-                      return const SizedBox();
-                    }
-                    final metadata = state!.currentSource!.tag as MediaItem;
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Image.asset(metadata.artUri.toString())),
-                        Text(metadata.album ?? '',
-                            style: Theme.of(context).textTheme.titleLarge),
-                        Text(metadata.title),
-                      ],
-                    );
-                  },
-                ),
+              StreamBuilder<SequenceState?>(
+                stream: _player.sequenceStateStream,
+                builder: (context, snapshot) {
+                  final state = snapshot.data;
+                  if (state?.sequence.isEmpty ?? true) {
+                    return const SizedBox();
+                  }
+                  final metadata = state!.currentSource!.tag as MediaItem;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(metadata.artUri.toString(), fit: BoxFit.fitWidth),
+                    ],
+                  );
+                },
               ),
+              const SizedBox(height: 10),
               ControlButtons(_player),
               StreamBuilder<PositionData>(
                 stream: _positionDataStream,
@@ -162,15 +160,13 @@ class _AudiosState extends BaseStatefulState<Audios> {
                   return SeekBar(
                     duration: positionData?.duration ?? Duration.zero,
                     position: positionData?.position ?? Duration.zero,
-                    bufferedPosition:
-                    positionData?.bufferedPosition ?? Duration.zero,
+                    bufferedPosition: positionData?.bufferedPosition ?? Duration.zero,
                     onChangeEnd: (newPosition) {
                       _player.seek(newPosition);
                     },
                   );
                 },
               ),
-              const SizedBox(height: 4.0),
               Row(
                 children: [
                   StreamBuilder<LoopMode>(
@@ -199,11 +195,7 @@ class _AudiosState extends BaseStatefulState<Audios> {
                     },
                   ),
                   Expanded(
-                    child: Text(
-                      "Playlist",
-                      style: Theme.of(context).textTheme.titleLarge,
-                      textAlign: TextAlign.center,
-                    ),
+                    child: const Text("Danh sách").w600().text16().mainColor().center(),
                   ),
                   StreamBuilder<bool>(
                     stream: _player.shuffleModeEnabledStream,
@@ -225,49 +217,48 @@ class _AudiosState extends BaseStatefulState<Audios> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 240.0,
-                child: StreamBuilder<SequenceState?>(
-                  stream: _player.sequenceStateStream,
-                  builder: (context, snapshot) {
-                    final state = snapshot.data;
-                    final sequence = state?.sequence ?? [];
-                    return ReorderableListView(
-                      onReorder: (int oldIndex, int newIndex) {
-                        if (oldIndex < newIndex) newIndex--;
-                        _playlist.move(oldIndex, newIndex);
-                      },
-                      children: [
-                        for (var i = 0; i < sequence.length; i++)
-                          Dismissible(
-                            key: ValueKey(sequence[i]),
-                            background: Container(
-                              color: Colors.redAccent,
-                              alignment: Alignment.centerRight,
-                              child: const Padding(
-                                padding: EdgeInsets.only(right: 8.0),
-                                child: Icon(Icons.delete, color: Colors.white),
+              Expanded(
+                  child: StreamBuilder<SequenceState?>(
+                    stream: _player.sequenceStateStream,
+                    builder: (context, snapshot) {
+                      final state = snapshot.data;
+                      final sequence = state?.sequence ?? [];
+                      return ReorderableListView(
+                        onReorder: (int oldIndex, int newIndex) {
+                          if (oldIndex < newIndex) newIndex--;
+                          _playlist.move(oldIndex, newIndex);
+                        },
+                        children: [
+                          for (var i = 0; i < sequence.length; i++)
+                            Dismissible(
+                              key: ValueKey(sequence[i]),
+                              background: Container(
+                                color: Colors.redAccent,
+                                alignment: Alignment.centerRight,
+                                child: const Padding(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Icon(Icons.delete, color: Colors.white),
+                                ),
+                              ),
+                              onDismissed: (dismissDirection) {
+                                _playlist.removeAt(i);
+                              },
+                              child: Material(
+                                color: i == state!.currentIndex
+                                    ? Colors.grey.shade300
+                                    : null,
+                                child: ListTile(
+                                  title: Text(sequence[i].tag.title as String),
+                                  onTap: () {
+                                    _player.seek(Duration.zero, index: i);
+                                  },
+                                ),
                               ),
                             ),
-                            onDismissed: (dismissDirection) {
-                              _playlist.removeAt(i);
-                            },
-                            child: Material(
-                              color: i == state!.currentIndex
-                                  ? Colors.grey.shade300
-                                  : null,
-                              child: ListTile(
-                                title: Text(sequence[i].tag.title as String),
-                                onTap: () {
-                                  _player.seek(Duration.zero, index: i);
-                                },
-                              ),
-                            ),
-                          ),
-                      ],
-                    );
-                  },
-                ),
+                        ],
+                      );
+                    },
+                  )
               ),
             ],
           ),

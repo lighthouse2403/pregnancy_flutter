@@ -17,7 +17,7 @@ class ControlButtons extends StatelessWidget {
           onPressed: () {
             showSliderDialog(
               context: context,
-              title: "Adjust volume",
+              title: "Âm lượng",
               divisions: 10,
               min: 0.0,
               max: 1.0,
@@ -43,26 +43,26 @@ class ControlButtons extends StatelessWidget {
                 processingState == ProcessingState.buffering) {
               return Container(
                 margin: const EdgeInsets.all(8.0),
-                width: 64.0,
-                height: 64.0,
+                width: 50.0,
+                height: 50.0,
                 child: const CircularProgressIndicator(),
               );
             } else if (playing != true) {
               return IconButton(
                 icon: const Icon(Icons.play_arrow),
-                iconSize: 64.0,
+                iconSize: 50.0,
                 onPressed: player.play,
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                 icon: const Icon(Icons.pause),
-                iconSize: 64.0,
+                iconSize: 50.0,
                 onPressed: player.pause,
               );
             } else {
               return IconButton(
                 icon: const Icon(Icons.replay),
-                iconSize: 64.0,
+                iconSize: 50.0,
                 onPressed: () => player.seek(Duration.zero,
                     index: player.effectiveIndices!.first),
               );
@@ -84,7 +84,7 @@ class ControlButtons extends StatelessWidget {
             onPressed: () {
               showSliderDialog(
                 context: context,
-                title: "Adjust speed",
+                title: "Tốc độ",
                 divisions: 10,
                 min: 0.5,
                 max: 1.5,
