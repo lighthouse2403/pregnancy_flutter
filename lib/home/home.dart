@@ -101,7 +101,7 @@ class _HomeState extends BaseStatefulState<Home> {
     String motherName = cache.getMotherName ?? '';
     String babyName = cache.getBabyName ?? '';
 
-    switch (index){
+    switch (index) {
       case 0:
         title = 'Mẹ bầu:';
         content = motherName.isNotEmpty ? motherName : '-';

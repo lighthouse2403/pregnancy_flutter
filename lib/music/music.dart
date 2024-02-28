@@ -6,55 +6,59 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/music/audio_handler.dart';
+import 'package:pregnancy_flutter/music/play_button.dart';
 import 'package:rxdart/rxdart.dart';
 
-class Music extends BaseStatefulWidget {
-  const Music({super.key});
+class Audios extends BaseStatefulWidget {
+  const Audios({super.key});
   @override
-  State<Music> createState() => _MusicState();
+  State<Audios> createState() => _AudiosState();
 }
 
-class _MusicState extends State<Music> {
+class _AudiosState extends State<Audios> {
   static int _nextMediaId = 0;
-  late AudioPlayer _player;
-  final _playlist = ConcatenatingAudioSource(children: [
-    ClippingAudioSource(
-      start: const Duration(seconds: 60),
-      end: const Duration(seconds: 90),
-      child: AudioSource.uri(Uri.parse('asset:///assets/audios/pregnancy_sound_1.mp3')),
-      tag: MediaItem(
-        id: '${_nextMediaId++}',
-        album: "Science Friday",
-        title: "pregnancy_sound_1",
-        artUri: Uri.parse('asset:///assets/audios/pregnancy_sound_1.mp3'),
-      ),
-    ),
-    AudioSource.uri(Uri.parse("asset:///assets/audios/pregnancy_sound_2.mp3"),
-      tag: MediaItem(
-        id: '${_nextMediaId++}',
-        album: "Science Friday",
-        title: "pregnancy_sound_2",
-        artUri: Uri.parse("asset:///assets/audios/pregnancy_sound_2.mp3"),
-      ),
-    ),
-    AudioSource.uri(Uri.parse("asset:///assets/audios/pregnancy_sound_3.mp3"),
-      tag: MediaItem(
-        id: '${_nextMediaId++}',
-        album: "Science Friday",
-        title: "pregnancy_sound_3",
-        artUri: Uri.parse("asset:///assets/audios/pregnancy_sound_3.mp3"),
-      ),
-    ),
-    AudioSource.uri(Uri.parse("asset:///assets/audios/pregnancy_sound_4.mp3"),
-      tag: MediaItem(
-        id: '${_nextMediaId++}',
-        album: "Science Friday",
-        title: "pregnancy_sound_4",
-        artUri: Uri.parse("asset:///assets/audios/pregnancy_sound_4.mp3"),
-      ),
-    ),
-  ]);
   int _addedCount = 0;
+  late AudioPlayer _player;
+
+  final _playlist = ConcatenatingAudioSource(
+      children: [
+        ClippingAudioSource(
+          start: const Duration(seconds: 60),
+          end: const Duration(seconds: 90),
+          child: AudioSource.uri(Uri.parse('asset:///assets/data/audios/pregnancy_sound_1.mp3')),
+          tag: MediaItem(
+            id: '${_nextMediaId++}',
+            album: "Nhạc không lời",
+            title: "Bản nhạc số 1",
+            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg"),
+          ),
+        ),
+        AudioSource.uri(Uri.parse("asset:///assets/data/audios/pregnancy_sound_2.mp3"),
+          tag: MediaItem(
+            id: '${_nextMediaId++}',
+            album: "Nhạc không lời",
+            title: "Bản nhạc số 2",
+            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg"),
+          ),
+        ),
+        AudioSource.uri(Uri.parse("asset:///assets/data/audios/pregnancy_sound_3.mp3"),
+          tag: MediaItem(
+            id: '${_nextMediaId++}',
+            album: "Nhạc không lời",
+            title: "Bản nhạc số 3",
+            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg"),
+          ),
+        ),
+        AudioSource.uri(Uri.parse("asset:///assets/data/audios/pregnancy_sound_4.mp3"),
+          tag: MediaItem(
+            id: '${_nextMediaId++}',
+            album: "Nhạc không lời",
+            title: "Bản nhạc số 4",
+            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg")
+          ),
+        )
+      ]
+  );
 
   @override
   void initState() {
@@ -77,7 +81,6 @@ class _MusicState extends State<Music> {
     try {
       await _player.setAudioSource(_playlist);
     } catch (e, stackTrace) {
-      // Catch load errors: 404, invalid url ...
       print("Error loading playlist: $e");
       print(stackTrace);
     }
@@ -135,6 +138,7 @@ class _MusicState extends State<Music> {
                   },
                 ),
               ),
+              ControlButtons(_player),
               StreamBuilder<PositionData>(
                 stream: _positionDataStream,
                 builder: (context, snapshot) {

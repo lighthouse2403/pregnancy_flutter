@@ -28,6 +28,9 @@ class _HomeItemState extends State<HomeItem> with SingleTickerProviderStateMixin
           case 3:
             Routes.instance.navigateTo(RoutesName.knowledge);
             break;
+          case 4:
+            Routes.instance.navigateTo(RoutesName.audios);
+            break;
           case 5:
             Routes.instance.navigateTo(RoutesName.doctor);
             break;
