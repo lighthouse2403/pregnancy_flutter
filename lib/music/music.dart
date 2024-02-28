@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:pregnancy_flutter/_gen/assets.gen.dart';
+import 'package:pregnancy_flutter/common/base/base_app_bar.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
+import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/music/audio_handler.dart';
 import 'package:pregnancy_flutter/music/play_button.dart';
+import 'package:pregnancy_flutter/routes/routes.dart';
 import 'package:rxdart/rxdart.dart';
 
 class Audios extends BaseStatefulWidget {
@@ -15,59 +19,64 @@ class Audios extends BaseStatefulWidget {
   State<Audios> createState() => _AudiosState();
 }
 
-class _AudiosState extends State<Audios> {
+class _AudiosState extends BaseStatefulState<Audios> {
   static int _nextMediaId = 0;
   int _addedCount = 0;
   late AudioPlayer _player;
-
-  final _playlist = ConcatenatingAudioSource(
-      children: [
-        ClippingAudioSource(
-          start: const Duration(seconds: 60),
-          end: const Duration(seconds: 90),
-          child: AudioSource.uri(Uri.parse('asset:///assets/data/audios/pregnancy_sound_1.mp3')),
-          tag: MediaItem(
-            id: '${_nextMediaId++}',
-            album: "Nhạc không lời",
-            title: "Bản nhạc số 1",
-            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg"),
-          ),
-        ),
-        AudioSource.uri(Uri.parse("asset:///assets/data/audios/pregnancy_sound_2.mp3"),
-          tag: MediaItem(
-            id: '${_nextMediaId++}',
-            album: "Nhạc không lời",
-            title: "Bản nhạc số 2",
-            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg"),
-          ),
-        ),
-        AudioSource.uri(Uri.parse("asset:///assets/data/audios/pregnancy_sound_3.mp3"),
-          tag: MediaItem(
-            id: '${_nextMediaId++}',
-            album: "Nhạc không lời",
-            title: "Bản nhạc số 3",
-            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg"),
-          ),
-        ),
-        AudioSource.uri(Uri.parse("asset:///assets/data/audios/pregnancy_sound_4.mp3"),
-          tag: MediaItem(
-            id: '${_nextMediaId++}',
-            album: "Nhạc không lời",
-            title: "Bản nhạc số 4",
-            artUri: Uri.parse("asset:///assets/data/images/cute_little_baby.jpeg")
-          ),
-        )
-      ]
-  );
+  late ConcatenatingAudioSource _playlist;
+  Uri bannerUri = Uri.parse('assets/images/cute_little_baby.jpg');
 
   @override
   void initState() {
     super.initState();
     _player = AudioPlayer();
+    _initPlaylist();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
     ));
     _init();
+  }
+
+  _initPlaylist() {
+    _playlist = ConcatenatingAudioSource(
+        children: [
+          ClippingAudioSource(
+            start: const Duration(seconds: 60),
+            end: const Duration(seconds: 90),
+            child: AudioSource.uri(Uri.parse('${Constants.audioPath}pregnancy_sound_1.mp3')),
+            tag: MediaItem(
+              id: '${_nextMediaId++}',
+              album: "Nhạc không lời",
+              title: "Bản nhạc số 1",
+              artUri: bannerUri,
+            ),
+          ),
+          AudioSource.uri(Uri.parse('${Constants.audioPath}pregnancy_sound_2.mp3'),
+            tag: MediaItem(
+              id: '${_nextMediaId++}',
+              album: "Nhạc không lời",
+              title: "Bản nhạc số 2",
+              artUri: bannerUri,
+            ),
+          ),
+          AudioSource.uri(Uri.parse('${Constants.audioPath}pregnancy_sound_3.mp3'),
+            tag: MediaItem(
+              id: '${_nextMediaId++}',
+              album: "Nhạc không lời",
+              title: "Bản nhạc số 3",
+              artUri: bannerUri,
+            ),
+          ),
+          AudioSource.uri(Uri.parse('${Constants.audioPath}pregnancy_sound_4.mp3'),
+            tag: MediaItem(
+              id: '${_nextMediaId++}',
+              album: "Nhạc không lời",
+              title: "Bản nhạc số 4",
+              artUri: bannerUri,
+            ),
+          )
+        ]
+    );
   }
 
   Future<void> _init() async {
@@ -81,7 +90,6 @@ class _AudiosState extends State<Audios> {
     try {
       await _player.setAudioSource(_playlist);
     } catch (e, stackTrace) {
-      print("Error loading playlist: $e");
       print(stackTrace);
     }
   }
@@ -101,7 +109,21 @@ class _AudiosState extends State<Audios> {
               position, bufferedPosition, duration ?? Duration.zero));
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget? buildAppBar() {
+    return BaseAppBar(
+        title: 'Âm nhạc',
+        leading: InkWell(
+          onTap: () => Routes.instance.pop(),
+          child: Align(
+            alignment: Alignment.center,
+            child: Assets.icons.arrowBack.svg(width: 24, height: 24),
+          ),
+        )
+    );
+  }
+
+  @override
+  Widget? buildBody() {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -123,14 +145,8 @@ class _AudiosState extends State<Audios> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                                child:
-                                Image.network(metadata.artUri.toString())),
-                          ),
-                        ),
-                        Text(metadata.album!,
+                          child: Image.asset(metadata.artUri.toString())),
+                        Text(metadata.album ?? '',
                             style: Theme.of(context).textTheme.titleLarge),
                         Text(metadata.title),
                       ],
@@ -154,7 +170,7 @@ class _AudiosState extends State<Audios> {
                   );
                 },
               ),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 4.0),
               Row(
                 children: [
                   StreamBuilder<LoopMode>(
