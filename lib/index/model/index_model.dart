@@ -26,16 +26,4 @@ class IndexModel {
     efwAverage: json["efw_tb"],
     efwRange: json["efw_gh"],
   );
-
-  Map<String, dynamic> toJson() => {
-    "empPayslipsId": empPayslipsId,
-    "month": month,
-    "description": description,
-    "paymentPeriod": paymentPeriod,
-    "lastAccessBy": lastAccessBy,
-    "lastAccessDate": lastAccessDate,
-    "lastAccessTime": lastAccessTime,
-    "successAccess": successAccess,
-    "failAccess": failAccess,
-  };
 }
