@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pregnancy_flutter/common/base/base_app_bar.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
@@ -15,73 +16,77 @@ class Index extends BaseStatefulWidget {
 class _IndexState extends BaseStatefulState<Index> {
   @override
   PreferredSizeWidget? buildAppBar() {
-    return AppBar(
-      title: Text('Soc-Tho').w700().text18().whiteColor(),
+    return BaseAppBar(
+      title: 'Chỉ số thai nhi',
     );
   }
 
   @override
   Widget? buildBody() {
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverToBoxAdapter(
-          child: Container(
-            height: 260.0,
-            child: HeartIndicator(),
-          ),
-        ),
-        SliverGrid(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 1.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0),
-          delegate: SliverChildBuilderDelegate(
-                (context, index) {
-              return _homeItem(index);
-            },
-            childCount: Constants.homeItems.length,
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.only(bottom: 80.0),
+    return Column(
+      children: [
+        _header(),
+        Expanded(
+            child: _indexList()
         )
       ],
     );
   }
 
-  Widget _homeItem(int index) {
-    return InkWell(
-      child: Column(
+  Widget _header() {
+    return Container(
+      height: 60,
+      child: Row(
         children: [
-          Text(Constants.homeItems[index].title)
+          Expanded(
+              flex: 1,
+              child: Text("Tuổi thai").center()
+          ),
+          Expanded(
+              flex: 1,
+              child: Text("Tuổi thai").center()
+          ),
+          Expanded(
+              flex: 1,
+              child: Text("Tuổi thai").center()
+          ),
+          Expanded(
+              flex: 1,
+              child: Text("Tuổi thai").center()
+          )
         ],
       ),
     );
   }
 
-  Widget _babyInformationRow(int index) {
-    String title;
-    String content;
-    switch (index){
-      case 0:
-        title = 'Mẹ bầu:';
-        break;
-      case 1:
-        title = 'Mẹ bầu:';
-        break;
-      case 2:
-        title = 'Mẹ bầu:';
-        break;
-      default:
-        break;
-    }
-
-    return Row(
-      children: [
-        Text('Tuổi thai:').w500().text14().greyColor(),
-        Text('30 tuần 2 ngày').w500().text14().greyColor(),
-      ],
+  Widget _indexList() {
+    return ListView.builder(
+        itemCount: 40,
+        itemBuilder: (context, index) {
+          return Container(
+            height: 44,
+            child: Row(
+              children: [
+                Expanded(
+                    flex: 1,
+                    child: Text("20").center()
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Text("20").center()
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Text("20").center()
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Text("20").center()
+                )
+              ],
+            ),
+          );
+        }
     );
   }
 }

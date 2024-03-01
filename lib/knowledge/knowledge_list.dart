@@ -77,7 +77,7 @@ class _KnowledgeListState extends BaseStatefulState<KnowledgeList> {
                           child: KnowledgeRow(title: 'index: $index'),
                         );
                       },
-                        childCount: knowledgeBloc.knowledgeDetail?.keys.length ?? 0,
+                        childCount: knowledgeBloc.knowledgeDetail?.keys.length ?? 0,2
                       ),
                     ),
                   ],
