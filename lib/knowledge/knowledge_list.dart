@@ -27,7 +27,6 @@ class _KnowledgeListState extends BaseStatefulState<KnowledgeList> {
   @override
   void initState() {
     super.initState();
-
     knowledgeBloc.add(LoadKnowledgeListEvent(widget.type));
   }
 

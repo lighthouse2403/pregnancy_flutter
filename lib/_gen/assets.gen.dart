@@ -114,9 +114,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/cute_little_baby.jpeg
+  /// File path: assets/images/cute_little_baby.jpg
   AssetGenImage get cuteLittleBaby =>
-      const AssetGenImage('assets/images/cute_little_baby.jpeg');
+      const AssetGenImage('assets/images/cute_little_baby.jpg');
 
   /// File path: assets/images/home_background.png
   AssetGenImage get homeBackground =>

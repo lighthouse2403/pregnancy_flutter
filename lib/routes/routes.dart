@@ -11,6 +11,7 @@ import 'package:pregnancy_flutter/doctor/doctor_model.dart';
 import 'package:pregnancy_flutter/knowledge/knowledge.dart';
 import 'package:pregnancy_flutter/knowledge/knowledge_detail.dart';
 import 'package:pregnancy_flutter/knowledge/knowledge_list.dart';
+import 'package:pregnancy_flutter/music/music.dart';
 import 'package:pregnancy_flutter/routes/route_name.dart';
 import 'package:pregnancy_flutter/vaccination/vaccination.dart';
 
@@ -92,6 +93,8 @@ class Routes {
       case RoutesName.knowledgeDetail:
         String detail = settings.arguments as String;
         return _pageRoute(page: KnowledgeDetail(content: detail), setting: settings);
+      case RoutesName.audios:
+        return _pageRoute(page: const Audios(), setting: settings);
       default:
         return null;
     }

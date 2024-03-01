@@ -40,10 +40,10 @@ class _PregnancyContentState extends BaseChildStatefulState<PregnancyContent> {
 
   Widget _generateContent(String? title, String content) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.6),
+        color: Colors.white.withOpacity(0.8),
         borderRadius: const BorderRadius.all(Radius.circular(8))
       ),
       child: Column(
@@ -51,9 +51,10 @@ class _PregnancyContentState extends BaseChildStatefulState<PregnancyContent> {
         children: [
           Container(
             alignment: Alignment.center,
-            child: Text(title ?? '').w600().text16().mainColor().ellipsis(),
+            child: Text(title ?? '').w600().text18().mainColor().ellipsis(),
           ),
-          Text(content).w400().text14().primaryTextColor().customHeight(1.6)
+          const SizedBox(height: 10),
+          Text(content).w500().text14().primaryTextColor().customHeight(1.6)
         ],
       ),
     );

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pregnancy_flutter/common/base/base_statefull_widget.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
+import 'package:pregnancy_flutter/common/extension/font_size_extension.dart';
+import 'package:pregnancy_flutter/common/extension/font_weight_extension.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/pregnancy/bloc/pregnancy_process_bloc.dart';
 import 'package:pregnancy_flutter/pregnancy/bloc/pregnancy_process_event.dart';
@@ -40,7 +42,9 @@ class _PregnancyState extends BaseStatefulState<Pregnancy> with
         isScrollable: true,
         tabs: List<int>.generate(40, (i) => i + 1).map((e) => Text('Tuần ${e}')).toList(),
         labelColor: Colors.white,
-        unselectedLabelColor: Constants.secondaryTextColor(),
+        unselectedLabelColor: Colors.white.withOpacity(0.5),
+        unselectedLabelStyle: const TextStyle().textW400().text12(),
+        labelStyle: const TextStyle().textW500().text15(),
         dividerColor: Colors.transparent,
       ),
     );

@@ -121,6 +121,7 @@ class Constants {
   /// Store id
   static String iOSPeriodTrackerAppId = '1528917480';
   static String androidPeriodTrackerAppId = '1528917480';
+  static String audioPath = 'asset:///assets/data/audios/';
 }
 
 enum KnowLedgeType {
