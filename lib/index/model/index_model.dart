@@ -2,33 +2,29 @@ class IndexModel {
   String? week;
   String? bpdAverage;
   String? bpdRange;
-  String flAverage;
-  String flRange;
-  String efwAverage;
-  String efwRange;
+  String? flAverage;
+  String? flRange;
+  String? efwAverage;
+  String? efwRange;
 
   IndexModel({
-    this.empPayslipsId,
-    this.month,
-    this.description,
-    this.paymentPeriod,
-    this.lastAccessBy,
-    this.lastAccessDate,
-    this.lastAccessTime,
-    this.successAccess,
-    this.failAccess,
+    this.week,
+    this.bpdAverage,
+    this.bpdRange,
+    this.flAverage,
+    this.flRange,
+    this.efwAverage,
+    this.efwRange,
   });
 
-  factory IndexModel.fromJson(Map<String, dynamic> json) => new Sample(
-    empPayslipsId: json["empPayslipsId"],
-    month: json["month"],
-    description: json["description"],
-    paymentPeriod: json["paymentPeriod"],
-    lastAccessBy: json["lastAccessBy"],
-    lastAccessDate: json["lastAccessDate"],
-    lastAccessTime: json["lastAccessTime"],
-    successAccess: json["successAccess"],
-    failAccess: json["failAccess"],
+  factory IndexModel.fromJson(Map<String, dynamic> json) => IndexModel(
+    week: json["week"],
+    bpdAverage: json["bpd_tb"],
+    bpdRange: json["bpd_gh"],
+    flAverage: json["fl_tb"],
+    flRange: json["fl_gh"],
+    efwAverage: json["efw_tb"],
+    efwRange: json["efw_gh"],
   );
 
   Map<String, dynamic> toJson() => {
