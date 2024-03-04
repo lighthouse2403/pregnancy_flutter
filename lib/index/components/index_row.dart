@@ -17,44 +17,39 @@ class _IndexRowState extends BaseStatefulState<IndexRow> {
 
   @override
   Widget? buildBody() {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        child: Row(
-          children: [
-            Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  color: AppColors.mainColor.withOpacity(0.3),
-                  child: Text('Tuần ${widget.index?.id}').w600().text14().center(),
-                )
-            ),
-            Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  child: Text('${widget.index?.bpdAverage}').w500().text14().center(),
-                )
-            ),
-            Expanded(
-                flex: 1,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  color: AppColors.mainColor.withOpacity(0.3),
-                  child: Text('${widget.index?.flAverage}').w500().text14().center(),
-                )
-            ),
-            Expanded(
-                flex: 1,
-                child: Text('${widget.index?.efwAverage}').center()
+    return Row(
+      children: [
+        Expanded(
+            flex: 1,
+            child: Container(
+              alignment: Alignment.center,
+              height: 60,
+              color: AppColors.mainColor.withOpacity(0.3),
+              child: Text('Tuần ${widget.index?.id}').w600().text14().center(),
             )
-          ],
         ),
-      ),
+        Expanded(
+            flex: 1,
+            child: Container(
+              alignment: Alignment.center,
+              height: 60,
+              child: Text('${widget.index?.bpdAverage}').w500().text14().center(),
+            )
+        ),
+        Expanded(
+            flex: 1,
+            child: Container(
+              alignment: Alignment.center,
+              height: 60,
+              color: AppColors.mainColor.withOpacity(0.3),
+              child: Text('${widget.index?.flAverage}').w500().text14().center(),
+            )
+        ),
+        Expanded(
+            flex: 1,
+            child: Text('${widget.index?.efwAverage}').center()
+        )
+      ],
     );
   }
 }

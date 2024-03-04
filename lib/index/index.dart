@@ -109,9 +109,12 @@ class _IndexState extends BaseStatefulState<Index> {
         itemBuilder: (context, i) {
           List<IndexModel> weekDetail = _indexBloc.indexList.where((element) => element.id == i + 7).toList();
           IndexModel? firstWeekDetail = weekDetail.first;
-          return SizedBox(
-            height: 50,
-            child: IndexRow(index: firstWeekDetail),
+          return InkWell(
+            onTap: () => _weekDetail(context, i),
+            child: SizedBox(
+              height: 50,
+              child: IndexRow(index: firstWeekDetail),
+            ),
           );
         },
         separatorBuilder: (BuildContext context, int index) {
@@ -170,19 +173,26 @@ class _IndexState extends BaseStatefulState<Index> {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          color: Colors.white,
-          alignment: Alignment.center,
-          margin: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(6))
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                10.0,
+              ),
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: childrens,
-          )
+          contentPadding: EdgeInsets.only(
+            top: 10.0,
+          ),
+          title: Text('Tuần ${index + 7}').center(),
+          content: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: childrens,
+              )
+          ),
         );
       },
     );
