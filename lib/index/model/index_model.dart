@@ -1,4 +1,5 @@
 class IndexModel {
+  int id;
   String? week;
   String? bpdAverage;
   String? bpdRange;
@@ -8,6 +9,7 @@ class IndexModel {
   String? efwRange;
 
   IndexModel({
+    required this.id,
     this.week,
     this.bpdAverage,
     this.bpdRange,
@@ -18,12 +20,13 @@ class IndexModel {
   });
 
   factory IndexModel.fromJson(Map<String, dynamic> json) => IndexModel(
-    week: json["week"],
-    bpdAverage: json["bpd_tb"],
-    bpdRange: json["bpd_gh"],
-    flAverage: json["fl_tb"],
-    flRange: json["fl_gh"],
-    efwAverage: json["efw_tb"],
-    efwRange: json["efw_gh"],
+    id: json["id"] ?? 0,
+    week: json["week"] ?? '',
+    bpdAverage: json["bpd_tb"] ?? '',
+    bpdRange: json["bpd_gh"] ?? '',
+    flAverage: json["fl_tb"] ?? '',
+    flRange: json["fl_gh"] ?? '',
+    efwAverage: json["efw_tb"] ?? '',
+    efwRange: json["efw_gh"] ?? '',
   );
 }

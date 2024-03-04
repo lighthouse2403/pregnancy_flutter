@@ -6,7 +6,7 @@ abstract class IndexEvent extends Equatable {
 }
 
 class LoadIndexEvent extends IndexEvent {
-  LoadIndexEvent();
+  const LoadIndexEvent();
 
   @override
   List<Object?> get props => [];
