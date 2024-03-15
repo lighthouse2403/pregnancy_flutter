@@ -5,24 +5,18 @@ import 'package:pregnancy_flutter/common/constants/constants.dart';
 import 'package:pregnancy_flutter/common/extension/text_extension.dart';
 import 'package:pregnancy_flutter/home/components/heart_indicator.dart';
 
-class Diary extends BaseStatefulWidget {
-  const Diary({super.key});
+class DiaryDetail extends BaseStatefulWidget {
+  const DiaryDetail({super.key});
 
   @override
-  State<Diary> createState() => _DiaryState();
+  State<DiaryDetail> createState() => _DiaryDetailState();
 }
 
-class _DiaryState extends BaseStatefulState<Diary> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
+class _DiaryDetailState extends BaseStatefulState<DiaryDetail> {
   @override
   PreferredSizeWidget? buildAppBar() {
     return AppBar(
-      title: const Text('Nhật ký').w700().text18().whiteColor(),
+      title: Text('Soc-Tho').w700().text18().whiteColor(),
     );
   }
 
