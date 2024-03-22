@@ -1,11 +1,9 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pregnancy_flutter/home/model/baby.dart';
 
 class CacheKey {
   static String motherName = 'mother_name';
   static String babyName = 'baby_name';
   static String birthDate = 'birth_date';
-  static String lastPeriod = 'last_period';
 }
 
 abstract class CacheData {

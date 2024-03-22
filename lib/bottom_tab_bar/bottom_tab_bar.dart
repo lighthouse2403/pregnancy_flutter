@@ -5,7 +5,7 @@ import 'package:pregnancy_flutter/common/extension/font_size_extension.dart';
 import 'package:pregnancy_flutter/common/extension/font_weight_extension.dart';
 import 'package:pregnancy_flutter/common/extension/text_color_extension.dart';
 import 'package:pregnancy_flutter/common/firebase/firebase_user.dart';
-import 'package:pregnancy_flutter/diary/diary.dart';
+import 'package:pregnancy_flutter/diary/diary_detail.dart';
 import 'package:pregnancy_flutter/home/home.dart';
 import 'package:pregnancy_flutter/index/index.dart';
 import 'package:pregnancy_flutter/pregnancy/pregnancy.dart';
@@ -22,7 +22,7 @@ class MainBottomTabBarState extends State<MainBottomTabBar> {
   List<Widget> tabs = [
     const Home(),
     const Pregnancy(),
-    const Diary(),
+    DiaryDetail(),
     const Index(),
     SingleDayContainer()
   ];

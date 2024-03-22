@@ -27,7 +27,7 @@ class _DiaryState extends BaseChildStatefulState<CustomButton> {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: widget.horizontalPadding ?? 20),
         alignment: widget.titleAlignment ?? Alignment.center,
-        height: 46,
+        height: 48,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(25)),
             color: widget.backgroundColor,

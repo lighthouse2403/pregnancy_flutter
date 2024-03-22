@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pregnancy_flutter/common/constants/app_colors.dart';
 import 'package:pregnancy_flutter/common/constants/constants.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -6,6 +7,7 @@ class CustomTextField extends StatefulWidget {
   final String? errorText;
   final String? hintText;
   final int? minLines;
+  final int? maxLines;
   final int? maxLength;
   final bool enable;
   final ValueChanged<String>? onTextChanged;
@@ -16,6 +18,7 @@ class CustomTextField extends StatefulWidget {
         this.errorText,
         this.hintText,
         this.minLines = 1,
+        this.maxLines,
         this.maxLength,
         this.onTextChanged,
         this.enable = true})
@@ -28,7 +31,7 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
-    final errorBorder = const OutlineInputBorder(
+    const errorBorder = OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(Constants.radius)),
       borderSide: BorderSide(
         width: 1,
@@ -59,7 +62,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           enabled: widget.enable,
           controller: widget.controller,
           minLines: widget.minLines,
-          maxLines: 10,
+          maxLines: widget.maxLines,
           maxLength: widget.maxLength,
           style: TextStyle(
             color: widget.enable ? Constants.primaryTextColor() : Constants.secondaryTextColor(),
@@ -75,7 +78,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             disabledBorder: defaultBorder,
             focusedErrorBorder: errorBorder,
             fillColor:
-            widget.enable ? Constants.secondaryTextColor().withOpacity(0.4) : Constants.secondaryTextColor(),
+            widget.enable ? Colors.white.withOpacity(0.6) : Constants.secondaryTextColor(),
             filled: true,
             hintStyle: TextStyle(
               fontSize: 14,
